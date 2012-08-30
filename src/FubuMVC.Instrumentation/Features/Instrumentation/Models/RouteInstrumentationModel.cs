@@ -7,6 +7,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
     {
         public Guid Id { get; set; }
         public string Url { get; set; }
+        public string ReportUrl { get; set; }
         public long HitCount { get; set; }
         public decimal AverageExecution { get; set; }
         public long MinExecution { get; set; }
@@ -22,6 +23,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
         {
             Id = report.Id;
             Url = report.Url;
+            ReportUrl = report.ReportUrl;
             HitCount = report.HitCount;
             AverageExecution = report.AverageExecution;
             MinExecution = report.MinExecution;

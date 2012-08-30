@@ -26,6 +26,7 @@ namespace FubuMVC.Instrumentation.Diagnostics
         public long MaxExecution { get { return _maxExecution; } }
 
         public string Url { get; set; }
+        public string ReportUrl { get; set; }
         public Guid Id { get; private set; }
 
         public RouteInstrumentationReport(DiagnosticsSettings settings, Guid behaviorId, string route = null)

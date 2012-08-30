@@ -107,7 +107,9 @@
     <Compile Include="Behaviors\HelloTextBehavior.cs" />
     <Compile Include="Controllers\Error\ErrorController.cs" />
     <None Include="Controllers\Home\Other.spark" />
-    <None Include="Controllers\Home\Home.spark" />
+    <None Include="Controllers\Home\Home.spark">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Controllers\Error\ErrorViewModel.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Home\HomeInputModel.cs" />

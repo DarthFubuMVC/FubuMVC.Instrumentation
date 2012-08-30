@@ -2,7 +2,7 @@
 using FubuMVC.Instrumentation.Diagnostics;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
-namespace FubuMVC.Instrumentation.Features.Instrumentation.View.Details
+namespace FubuMVC.Instrumentation.Features.Instrumentation.Details
 {
     public class GetHandler
     {

@@ -7,7 +7,7 @@ using FubuCore;
 using FubuMVC.Instrumentation.Diagnostics;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
-namespace FubuMVC.Instrumentation.Features.Instrumentation.View
+namespace FubuMVC.Instrumentation.Features.Instrumentation
 {
     public class AverageChainVisualizerBuilder : IAverageChainVisualizerBuilder
     {

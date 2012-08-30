@@ -11,7 +11,7 @@ namespace FubuMVC.Instrumentation
         public InstrumentationDiagnosticsRegistry()
         {
             Applies
-                .ToAssemblyContainingType<InstrumentationDiagnosticsRegistry>();
+                .ToThisAssembly();
 
             Import<HandlerConvention>(r =>r.MarkerType<InstrumentationHandlers>());
 

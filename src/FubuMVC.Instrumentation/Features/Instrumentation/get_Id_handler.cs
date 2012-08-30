@@ -5,14 +5,15 @@ using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Diagnostics;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
-namespace FubuMVC.Instrumentation.Features.Instrumentation.View
+namespace FubuMVC.Instrumentation.Features.Instrumentation
 {
     public class get_Id_handler
     {
         private readonly IAverageChainVisualizerBuilder _averageChainVisualizerBuilder;
         private readonly IInstrumentationReportCache _reportCache;
 
-        public get_Id_handler(IInstrumentationReportCache reportCache, IAverageChainVisualizerBuilder averageChainVisualizerBuilder)
+        public get_Id_handler(IInstrumentationReportCache reportCache,
+            IAverageChainVisualizerBuilder averageChainVisualizerBuilder)
         {
             _reportCache = reportCache;
             _averageChainVisualizerBuilder = averageChainVisualizerBuilder;
@@ -36,6 +37,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.View
                 MinExecution = report.MinExecution,
                 AverageChain = _averageChainVisualizerBuilder.VisualizerFor(inputModel.Id)
             };
+
             model.RequestOverviews.AddRange(report.Reports
                 .OrderByDescending(x => x.Time)
                 .Select(x =>

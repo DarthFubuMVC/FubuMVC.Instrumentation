@@ -87,10 +87,10 @@
     <Compile Include="Features\Instrumentation\Models\InstrumentationRouteRequestModel.cs" />
     <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModel.cs" />
     <Compile Include="Features\Instrumentation\RoutesGrid.cs" />
-    <Compile Include="Features\Instrumentation\View\AverageChainVisualizerBuilder.cs" />
-    <Compile Include="Features\Instrumentation\View\Details\GetHandler.cs" />
-    <Compile Include="Features\Instrumentation\View\get_Id_handler.cs" />
-    <Compile Include="Features\Instrumentation\View\IAverageChainVisualizerBuilder.cs" />
+    <Compile Include="Features\Instrumentation\AverageChainVisualizerBuilder.cs" />
+    <Compile Include="Features\Instrumentation\Details\GetHandler.cs" />
+    <Compile Include="Features\Instrumentation\get_Id_handler.cs" />
+    <Compile Include="Features\Instrumentation\IAverageChainVisualizerBuilder.cs" />
     <Compile Include="InstrumentationDiagnosticsRegistry.cs" />
     <Compile Include="Navigation\InstrumentationMenu.cs" />
     <Compile Include="InstrumentationRegistration.cs" />
@@ -109,7 +109,7 @@
     <None Include="Features\Instrumentation\RouteInstrumentation.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Instrumentation\View\View.spark" />
+    <None Include="Features\Instrumentation\View.spark" />
     <None Include="instrumentation.assets.config" />
     <None Include="instrumentation.spark.config" />
     <None Include="packages.config" />

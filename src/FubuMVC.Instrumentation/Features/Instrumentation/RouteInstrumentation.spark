@@ -17,16 +17,13 @@
       MinExecution: {width: 200},
       MaxExecution: {width: 200}
     },
-    options: {
-
-    },
     modify: function(grid, div){
       grid.onDblClick.subscribe(function (e) {
-        var cell = grid.getCellFromEvent(e);
-        var item = grid.getDataItem(cell.row);
-        var url = item.ReportUrl;
-        window.location.href = url;
-        });
+        var cell = grid.getCellFromEvent(e),
+            item = grid.getDataItem(cell.row);
+
+          window.location = item.ReportUrl;
+      });
     }
   }
 </script>
