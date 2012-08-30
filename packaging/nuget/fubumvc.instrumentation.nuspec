@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>FubuMVC.Instrumentation</id>
+    <version>0.0</version>
+    <authors></authors>
+    <owners></owners>
+    <licenseUrl>https://github.com/DarthFubuMVC/fubumvc/raw/master/license.txt</licenseUrl>
+    <projectUrl>http://mvc.fubu-project.org/</projectUrl>
+    <iconUrl>https://github.com/DarthFubuMVC/fubu-collateral/raw/master/Icons/FubuMvc_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description></description>
+    <tags>fubumvc instrumentation</tags>
+    <dependencies>
+	  <dependency id="FubuMVC.SlickGrid" />
+	  <dependency id="FubuMVC.Spark" />
+	  <dependency id="FubuMVC.References" />
+	  <dependency id="FubuMVC.Diagnostics" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\src\FubuMVC.Instrumentation\bin\FubuMVC.Instrumentation.*" target="lib\net40" />
+  </files>
+</package>

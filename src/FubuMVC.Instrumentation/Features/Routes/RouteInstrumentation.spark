@@ -1,0 +1,34 @@
+﻿<viewdata model="FubuMVC.Instrumentation.Features.Routes.Models.InstrumentationCacheModel"/>
+<use master="" />
+<use namespace="FubuMVC.SlickGrid" />
+<use namespace="FubuMVC.Instrumentation.Features.Routes"/>
+<use namespace="System.Linq" />
+<use namespace="FubuMVC.TwitterBootstrap" />
+
+<h1>Route Instrumentation Explorer</h1>
+
+!{this.RenderGrid<RoutesGrid>("routesGrid").Attr("style", "width:100%;height:500px;")}
+
+<script id="routesGrid-custom">
+  {
+    columns: {
+      Url: {width: 300},
+      AverageExecution: {width: 225},
+      HitCount: {width: 100},
+      ExceptionCount: {width: 150},
+      MinExecution: {width: 200},
+      MaxExecution: {width: 200}
+    },
+    options: {
+
+    },
+    modify: function(grid, div){
+      grid.onDblClick.subscribe(function (e) {
+        var cell = grid.getCellFromEvent(e);
+        var item = grid.getDataItem(cell.row);
+        var url = item.ReportUrl;
+        window.location.href = url;
+        });
+    }
+  }
+</script>

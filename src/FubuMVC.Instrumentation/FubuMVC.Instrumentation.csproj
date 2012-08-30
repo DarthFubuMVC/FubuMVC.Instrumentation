@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB8A4026-60AE-4077-9B6E-F7F08071AE10}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FubuMVC.Instrumentation</RootNamespace>
+    <AssemblyName>FubuMVC.Instrumentation</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bottles">
+      <HintPath>..\..\packages\Bottles.0.9.1.338\lib\Bottles.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuCore">
+      <HintPath>..\..\packages\FubuCore.0.9.9.175\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuLocalization">
+      <HintPath>..\..\packages\FubuLocalization.0.9.5.73\lib\FubuLocalization.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core">
+      <HintPath>..\..\packages\FubuMVC.References.0.9.8.1111\lib\net40\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Diagnostics">
+      <HintPath>..\..\packages\FubuMVC.Diagnostics.0.1.0.4\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.SlickGrid">
+      <HintPath>..\..\packages\FubuMVC.SlickGrid.0.0.0.40\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Spark">
+      <HintPath>..\..\packages\FubuMVC.Spark.0.9.8.1111\lib\net40\FubuMVC.Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap">
+      <HintPath>..\..\packages\FubuMVC.References.0.9.8.1111\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Diagnostics\InstrumentationReportCache.cs" />
+    <Compile Include="Diagnostics\RouteInstrumentationReport.cs" />
+    <Compile Include="Features\InstrumentationHandlers.cs" />
+    <Compile Include="Features\Routes\GetHandler.cs" />
+    <Compile Include="Features\Routes\Models\AverageBehaviorModel.cs" />
+    <Compile Include="Features\Routes\Models\AverageChainModel.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationCacheModel.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationCacheModelBuilder.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationDetailsModel.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationInputModel.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationRequestModel.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationRequestOverviewModel.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationRouteDetailsModel.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationRouteDetailsRequestModel.cs" />
+    <Compile Include="Features\Routes\Models\InstrumentationRouteRequestModel.cs" />
+    <Compile Include="Features\Routes\Models\RouteInstrumentationModel.cs" />
+    <Compile Include="Features\Routes\RoutesGrid.cs" />
+    <Compile Include="Features\Routes\View\AverageChainVisualizerBuilder.cs" />
+    <Compile Include="Features\Routes\View\Details\GetHandler.cs" />
+    <Compile Include="Features\Routes\View\get_Id_handler.cs" />
+    <Compile Include="Features\Routes\View\IAverageChainVisualizerBuilder.cs" />
+    <Compile Include="InstrumentationDiagnosticsRegistry.cs" />
+    <Compile Include="InstrumentationHandlerUrlPolicy.cs" />
+    <Compile Include="Navigation\InstrumentationMenu.cs" />
+    <Compile Include="InstrumentationRegistration.cs" />
+    <Compile Include="Navigation\InstrumentationKeys.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Scripts\instrumentation\instrumentation.js" />
+    <Content Include="Content\Scripts\instrumentation\instrumentationroutedetails.js" />
+    <Content Include="Content\Styles\instrumentation.css" />
+    <Content Include="Content\Styles\instrumentationdetails.css" />
+    <Content Include="Features\Routes\old.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".package-manifest" />
+    <None Include="Features\Routes\RouteInstrumentation.spark">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Features\Routes\View\View.spark" />
+    <None Include="instrumentation.assets.config" />
+    <None Include="instrumentation.spark.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\Images\" />
+    <Folder Include="Shared\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="pak-WebContent.zip" />
+  </ItemGroup>
+</Project>
