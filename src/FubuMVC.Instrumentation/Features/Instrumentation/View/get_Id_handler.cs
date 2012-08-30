@@ -3,9 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Diagnostics;
-using FubuMVC.Instrumentation.Features.Routes.Models;
+using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
-namespace FubuMVC.Instrumentation.Features.Routes.View
+namespace FubuMVC.Instrumentation.Features.Instrumentation.View
 {
     public class get_Id_handler
     {

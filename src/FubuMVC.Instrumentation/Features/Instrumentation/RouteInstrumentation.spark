@@ -1,9 +1,7 @@
-﻿<viewdata model="FubuMVC.Instrumentation.Features.Routes.Models.InstrumentationCacheModel"/>
-<use master="" />
+﻿<use master="" />
+<use namespace="FubuMVC.Instrumentation.Features.Instrumentation" />
 <use namespace="FubuMVC.SlickGrid" />
-<use namespace="FubuMVC.Instrumentation.Features.Routes"/>
-<use namespace="System.Linq" />
-<use namespace="FubuMVC.TwitterBootstrap" />
+<viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationCacheModel"/>
 
 <h1>Route Instrumentation Explorer</h1>
 

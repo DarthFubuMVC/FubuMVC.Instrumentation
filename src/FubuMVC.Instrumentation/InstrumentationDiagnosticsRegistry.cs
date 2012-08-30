@@ -13,15 +13,10 @@ namespace FubuMVC.Instrumentation
             Applies
                 .ToAssemblyContainingType<InstrumentationDiagnosticsRegistry>();
 
-            Import<HandlerConvention>(markers => new InstrumentationHandlerUrlPolicy(typeof(InstrumentationHandlers)));
-
-            //Import<InstrumentationHandlerUrlPolicy>(() => new InstrumentationHandlerUrlPolicy(markers));
+            Import<HandlerConvention>(r =>r.MarkerType<InstrumentationHandlers>());
 
             Views
                 .TryToAttachWithDefaultConventions();
-
-            //Routes
-            //    .UrlPolicy<DiagnosticsAttributeUrlPolicy>();
 
             Navigation<InstrumentationMenu>();
 

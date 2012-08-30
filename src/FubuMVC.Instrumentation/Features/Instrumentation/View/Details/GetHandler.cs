@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using FubuMVC.Instrumentation.Diagnostics;
-using FubuMVC.Instrumentation.Features.Routes.Models;
+using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
-namespace FubuMVC.Instrumentation.Features.Routes.View.Details
+namespace FubuMVC.Instrumentation.Features.Instrumentation.View.Details
 {
     public class GetHandler
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using FubuMVC.Diagnostics.Runtime;
 
-namespace FubuMVC.Instrumentation.Features.Routes.Models
+namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
 {
     public class InstrumentationRouteDetailsModel
     {

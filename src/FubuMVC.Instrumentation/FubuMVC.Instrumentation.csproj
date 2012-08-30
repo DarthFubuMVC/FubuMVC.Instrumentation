@@ -73,26 +73,25 @@
     <Compile Include="Diagnostics\InstrumentationReportCache.cs" />
     <Compile Include="Diagnostics\RouteInstrumentationReport.cs" />
     <Compile Include="Features\InstrumentationHandlers.cs" />
-    <Compile Include="Features\Routes\GetHandler.cs" />
-    <Compile Include="Features\Routes\Models\AverageBehaviorModel.cs" />
-    <Compile Include="Features\Routes\Models\AverageChainModel.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationCacheModel.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationCacheModelBuilder.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationDetailsModel.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationInputModel.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationRequestModel.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationRequestOverviewModel.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationRouteDetailsModel.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationRouteDetailsRequestModel.cs" />
-    <Compile Include="Features\Routes\Models\InstrumentationRouteRequestModel.cs" />
-    <Compile Include="Features\Routes\Models\RouteInstrumentationModel.cs" />
-    <Compile Include="Features\Routes\RoutesGrid.cs" />
-    <Compile Include="Features\Routes\View\AverageChainVisualizerBuilder.cs" />
-    <Compile Include="Features\Routes\View\Details\GetHandler.cs" />
-    <Compile Include="Features\Routes\View\get_Id_handler.cs" />
-    <Compile Include="Features\Routes\View\IAverageChainVisualizerBuilder.cs" />
+    <Compile Include="Features\Instrumentation\GetHandler.cs" />
+    <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModelBuilder.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationDetailsModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationInputModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestOverviewModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsRequestModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteRequestModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModel.cs" />
+    <Compile Include="Features\Instrumentation\RoutesGrid.cs" />
+    <Compile Include="Features\Instrumentation\View\AverageChainVisualizerBuilder.cs" />
+    <Compile Include="Features\Instrumentation\View\Details\GetHandler.cs" />
+    <Compile Include="Features\Instrumentation\View\get_Id_handler.cs" />
+    <Compile Include="Features\Instrumentation\View\IAverageChainVisualizerBuilder.cs" />
     <Compile Include="InstrumentationDiagnosticsRegistry.cs" />
-    <Compile Include="InstrumentationHandlerUrlPolicy.cs" />
     <Compile Include="Navigation\InstrumentationMenu.cs" />
     <Compile Include="InstrumentationRegistration.cs" />
     <Compile Include="Navigation\InstrumentationKeys.cs" />
@@ -103,14 +102,14 @@
     <Content Include="Content\Scripts\instrumentation\instrumentationroutedetails.js" />
     <Content Include="Content\Styles\instrumentation.css" />
     <Content Include="Content\Styles\instrumentationdetails.css" />
-    <Content Include="Features\Routes\old.txt" />
+    <Content Include="Features\Instrumentation\old.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".package-manifest" />
-    <None Include="Features\Routes\RouteInstrumentation.spark">
+    <None Include="Features\Instrumentation\RouteInstrumentation.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Routes\View\View.spark" />
+    <None Include="Features\Instrumentation\View\View.spark" />
     <None Include="instrumentation.assets.config" />
     <None Include="instrumentation.spark.config" />
     <None Include="packages.config" />

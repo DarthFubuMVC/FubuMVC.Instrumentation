@@ -1,6 +1,6 @@
-﻿using FubuMVC.Instrumentation.Features.Routes.Models;
+﻿using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
-namespace FubuMVC.Instrumentation.Features.Routes
+namespace FubuMVC.Instrumentation.Features.Instrumentation
 {
     public class GetHandler
     {

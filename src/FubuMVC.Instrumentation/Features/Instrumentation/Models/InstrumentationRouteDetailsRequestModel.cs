@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FubuMVC.Instrumentation.Features.Routes.Models
+namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
 {
     public class InstrumentationRouteDetailsRequestModel
     {

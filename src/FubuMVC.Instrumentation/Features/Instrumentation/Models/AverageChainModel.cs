@@ -2,7 +2,7 @@
 using System.Linq;
 using FubuMVC.Core.Registration.Nodes;
 
-namespace FubuMVC.Instrumentation.Features.Routes.Models
+namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
 {
     public class AverageChainModel
     {

@@ -1,6 +1,6 @@
-﻿<viewdata model="FubuMVC.Diagnostics.Instrumentation.Features.Routes.Models.InstrumentationDetailsModel"/>
-<use master="TwoColumn" />
+﻿<use master="TwoColumn" />
 <use namespace="System" />
+<viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationDetailsModel"/>
 
 <Stylesheet href="instrumentationdetails.css" />
 <Script src="instrumentationroutedetails.js" />

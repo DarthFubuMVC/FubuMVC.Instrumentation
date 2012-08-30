@@ -3,10 +3,10 @@ using System.Linq;
 using FubuMVC.Core;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Diagnostics;
-using FubuMVC.Instrumentation.Features.Routes.Models;
+using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 using FubuMVC.SlickGrid;
 
-namespace FubuMVC.Instrumentation.Features.Routes
+namespace FubuMVC.Instrumentation.Features.Instrumentation
 {
     public class RoutesGrid : GridDefinition<RouteInstrumentationModel>
     {

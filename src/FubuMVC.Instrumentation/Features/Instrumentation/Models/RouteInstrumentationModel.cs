@@ -1,7 +1,7 @@
 using System;
 using FubuMVC.Instrumentation.Diagnostics;
 
-namespace FubuMVC.Instrumentation.Features.Routes.Models
+namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
 {
     public class RouteInstrumentationModel
     {

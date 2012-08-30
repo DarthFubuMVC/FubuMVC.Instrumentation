@@ -5,9 +5,9 @@ using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuCore;
 using FubuMVC.Instrumentation.Diagnostics;
-using FubuMVC.Instrumentation.Features.Routes.Models;
+using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
-namespace FubuMVC.Instrumentation.Features.Routes.View
+namespace FubuMVC.Instrumentation.Features.Instrumentation.View
 {
     public class AverageChainVisualizerBuilder : IAverageChainVisualizerBuilder
     {
