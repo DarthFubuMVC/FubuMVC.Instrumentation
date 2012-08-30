@@ -4,9 +4,9 @@ namespace FubuMVC.Instrumentation.Sample.Controllers
 {
     public class ErrorController
     {
-         public ErrorViewModel Index()
-         {
-             throw new Exception("boom");
-         }
+        public ErrorViewModel Index()
+        {
+            throw new Exception("boom");
+        }
     }
 }
