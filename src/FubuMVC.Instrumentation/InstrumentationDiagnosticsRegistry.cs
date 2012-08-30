@@ -1,4 +1,5 @@
 ﻿using FubuMVC.Core;
+using FubuMVC.Core.Registration.Conventions;
 using FubuMVC.Instrumentation.Features;
 using FubuMVC.Instrumentation.Navigation;
 using FubuMVC.Spark;
@@ -12,8 +13,7 @@ namespace FubuMVC.Instrumentation
             Applies
                 .ToAssemblyContainingType<InstrumentationDiagnosticsRegistry>();
 
-            ApplyHandlerConventions(markers => new InstrumentationHandlerUrlPolicy(markers),
-                                    typeof(InstrumentationHandlers));
+            Import<HandlerConvention>(markers => new InstrumentationHandlerUrlPolicy(typeof(InstrumentationHandlers)));
 
             //Import<InstrumentationHandlerUrlPolicy>(() => new InstrumentationHandlerUrlPolicy(markers));
 
