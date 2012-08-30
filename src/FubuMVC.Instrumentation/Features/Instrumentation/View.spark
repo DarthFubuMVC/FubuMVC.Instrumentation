@@ -1,117 +1,128 @@
-﻿<use master="TwoColumn" />
+﻿<use master="Temp" />
 <use namespace="System" />
+<use namespace="FubuMVC.TwitterBootstrap" />
 <viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationDetailsModel"/>
 
 <Stylesheet href="instrumentationdetails.css" />
 <Script src="instrumentationroutedetails.js" />
 
-<content:leftColumn>
-  <h5>Behavior Chain</h5>
-  <if condition="Model.AverageChain != null">
-    <ul class="chain-visualizer">
-      <li each="var node in Model.AverageChain.BehaviorAverages">
-        <a href="#" id="Node-${node.Id}" class="chain-node btn large">${node.DisplayType} (${node.AverageExecutionTime.ToString("F")} ms)</a>
-      </li>
-    </ul>
-  </if>
-  <else>
-    <span class="label warning">Behavior not found.</span>
-  </else>
-  <div id="chain-arrow" style="display:none">
-    <Image src="down-arrow.png" />
-  </div>
-  <p>
-    <em>
-      <strong>Note:</strong> <br/>
-      This is a visual representation of the corresponding Behavior Chain and the average execution times per node -- the configuration model for your request.<br/><br/>
-      <a href="${this.Urls.UrlFor(new FubuMVC.Diagnostics.Features.Chains.ChainRequest { Id = Model.AverageChain.Chain.UniqueId } )}">Click here</a> to view the details of the configuration.
-    </em>
-  </p>
-</content:leftColumn>
 
-<content:rightColumn>
-  <if condition="Model.Id != Guid.Empty">
-  <div class="page-header">
-    <h1 class="route">
-      <span>Route:</span> ${Model.Url}
-      <small>(Chain ${Model.Id})</small>
-    </h1>
-    <input id="chainId" type="hidden" value="${Model.Id}"/>
-  </div>
-  <div class="well overview">
-    <h5>Overview</h5>
-    <ul>
-      <li>
-        <span>Average Execution Time:</span> ${Model.AverageExecution.ToString("F2")} ms
-      </li>
-      <li>
-        <span>Exception Count:</span> ${Model.ExceptionCount}
-      </li>
-      <li>
-        <span>Hit Count:</span> ${Model.HitCount}
-      </li>
-      <li>
-        <span>Maximum Execution Time:</span> ${Model.MaxExecution} ms
-      </li>
-      <li>
-        <span>Minimum Execution Time:</span> ${Model.MinExecution} ms
-      </li>
-    </ul>
-  </div>
-  <if condition="Model.RequestOverviews.Count == 0">
-    <h4>No Requests</h4>
-  </if>
-  <else if="Model.RequestOverviews.Count == 1">
-    <h4>Last Request:</h4>
-  </else>
-  <else>
-    <h4>Last ${Model.RequestOverviews.Count} Requests:</h4>
-  </else>
-  <for each="var overview in Model.RequestOverviews">
-    <div class="alert-message ${overview.HasException ? "error" : overview.IsWarning ? "" : "info"}">
-      <input type="hidden" value="${overview.Id}"/>
+<content:main>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <h5>Behavior Chain</h5>
+      <if condition="Model.AverageChain != null">
+        <ul class="chain-visualizer">
+          <li each="var node in Model.AverageChain.BehaviorAverages">
+            <a href="#" id="Node-${node.Id}" class="chain-node btn large">${node.DisplayType} (${node.AverageExecutionTime.ToString("F")} ms)</a>
+          </li>
+        </ul>
+      </if>
+      <else>
+        <span class="label warning">Behavior not found.</span>
+      </else>
+      <div id="chain-arrow" style="display:none">
+        <Image src="down-arrow.png" />
+      </div>
       <p>
-        <strong>Date Time:</strong>
-        <span>${overview.DateTime}</span>
-        <span class="seperator">&nbsp;</span>
-        <strong>Execution Time:</strong>
-        <span>${overview.ExecutionTime} ms</span>
+        <em>
+          <strong>Note:</strong> <br/>
+          This is a visual representation of the corresponding Behavior Chain and the average execution times per node -- the configuration model for your request.<br/><br/>
+          <a href="${this.Urls.UrlFor(new FubuMVC.Diagnostics.Runtime.RequestLog { ChainId = Model.AverageChain.Chain.UniqueId } )}">Click here</a> to view the details of the configuration.
+        </em>
       </p>
     </div>
-    <div class="subdetails well">
-    </div>
-  </for>
-  <ignore>
-    <script id="detailsTemplate" type="text/x-jquery-tmpl">
-      <div class="detailselement">
-        ${Name}
-        <ul>
-          <li>Description: ${Description}</li>
-          <li>Execution Time: ${ExecutionTime} ms</li>
-          {{if Exception}}
-          <li>
-            Exception:
-            <div class="exceptiondetails">
-              {{html Exception}}
+
+    <div class="span9">
+      <if condition="Model.Id != Guid.Empty">
+        <div id="request-header" class="hero-unit">
+          <h2 class="route">
+            <span>Route:</span> ${Model.Url}
+            <small>(Chain ${Model.Id})</small>
+          </h2>
+          <input id="chainId" type="hidden" value="${Model.Id}"/>
+        </div>
+
+        <div class="well overview">
+          <h3>Overview</h3>
+          <ul>
+            <li>
+              <span>Average Execution Time:</span> ${Model.AverageExecution.ToString("F2")} ms
+            </li>
+            <li>
+              <span>Exception Count:</span> ${Model.ExceptionCount}
+            </li>
+            <li>
+              <span>Hit Count:</span> ${Model.HitCount}
+            </li>
+            <li>
+              <span>Maximum Execution Time:</span> ${Model.MaxExecution} ms
+            </li>
+            <li>
+              <span>Minimum Execution Time:</span> ${Model.MinExecution} ms
+            </li>
+          </ul>
+        </div>
+        <if condition="Model.RequestOverviews.Count == 0">
+          <h3>No Requests</h3>
+        </if>
+        <else if="Model.RequestOverviews.Count == 1">
+          <h3>Last Request:</h3>
+        </else>
+        <else>
+          <h4>Last ${Model.RequestOverviews.Count} Requests:</h4>
+        </else>
+        <for each="var overview in Model.RequestOverviews">
+          <div class="alert-message ${overview.HasException ? "error=''" : overview.IsWarning ? string.Empty : "info=''"}">
+            <input type="hidden" value="${overview.Id}"/>
+            <p>
+              <strong>Date Time:</strong>
+              <span>${overview.DateTime}</span>
+              <span class="seperator">&nbsp;</span>
+              <strong>Execution Time:</strong>
+              <span>${overview.ExecutionTime} ms</span>
+            </p>
+          </div>
+          <div class="subdetails well">
+          </div>
+        </for>
+        <ignore>
+          <script id="detailsTemplate" type="text/x-jquery-tmpl">
+            <div class="detailselement">
+              ${Name}
+              <ul>
+                <li>Description: ${Description}</li>
+                <li>Execution Time: ${ExecutionTime} ms</li>
+                {{if Exception}}
+                <li>
+                  Exception:
+                  <div class="exceptiondetails">
+                    {{html Exception}}
+                  </div>
+                </li>
+                {{/if}}
+              </ul>
             </div>
-          </li>
-          {{/if}}
-        </ul>
-      </div>
-    </script>
-    <script id="noDetailsTemplate" type="text/x-jquery-tmpl">
-      <div class="detailselement">
-        Details have been removed from the cache
-      </div>
-    </script>
-  </ignore>
-  </if>
-  <else>
-    <div class="page-header">
-      <h1>Unable to find request instrumentation</h1>
+          </script>
+          <script id="noDetailsTemplate" type="text/x-jquery-tmpl">
+            <div class="detailselement">
+              Details have been removed from the cache
+            </div>
+          </script>
+        </ignore>
+      </if>
+      <else>
+        <div id="request-header" class="hero-unit">
+          <h2>Unable to find request instrumentation</h2>
+        </div>
+        <div>
+          The request instrumentation that you are trying to access does not exist. Return to the 
+          <a href="${this.Urls.UrlFor<FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRequestModel>()}">instrumentation</a>
+          page to see a list of the current list of instrumentation statistics.
+        </div>
+      </else>
     </div>
-    <div>
-      The request instrumentation that you are trying to access does not exist. Return to the <a href="${this.Urls.UrlFor(new FubuMVC.Diagnostics.Instrumentation.Features.Routes.Models.InstrumentationRequestModel())}">instrumentation</a> page to see a list of the current list of instrumentation statistics.
-    </div>
-  </else>
-</content:rightColumn>
+  </div>
+</div>
+</content:main>

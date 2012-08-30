@@ -3,61 +3,27 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using FubuMVC.Core;
-using FubuMVC.Core.Registration;
+using FubuMVC.Diagnostics.Runtime;
 
 namespace FubuMVC.Instrumentation.Diagnostics
 {
     public interface IInstrumentationReportCache : IEnumerable<RouteInstrumentationReport>
     {
         RouteInstrumentationReport GetReport(Guid behaviorId);
+        void Store(RequestLog log);
     }
 
     public class InstrumentationReportCache : IInstrumentationReportCache
     {
-        //private readonly IEnumerable<ICacheFilter> _filters;
-        private readonly BehaviorGraph _graph;
         private readonly DiagnosticsSettings _settings;
+
         private readonly ConcurrentDictionary<Guid, RouteInstrumentationReport> _instrumentationReports =
             new ConcurrentDictionary<Guid, RouteInstrumentationReport>();
 
-        public InstrumentationReportCache(/*IEnumerable<ICacheFilter> filters,*/ BehaviorGraph graph, DiagnosticsSettings settings/*, IDebugReportPublisher publisher*/)
+        public InstrumentationReportCache(DiagnosticsSettings settings)
         {
-            //_filters = filters;
-            _graph = graph;
             _settings = settings;
-            //publisher.Register(AddReport);
         }
-
-        //private void AddReport(RequestLog debugReport, CurrentRequest request)
-        //{
-        //    //if (_filters.Any(f => f.Exclude(request)))
-        //    //{
-        //    //    return;
-        //    //}
-
-        //    _instrumentationReports.AddOrUpdate(debugReport.ChainId,
-        //        guid =>
-        //        {
-        //            RouteInstrumentationReport report;
-        //            var chain = _graph.Behaviors.SingleOrDefault(c => c.UniqueId == debugReport.ChainId);
-        //            if (chain != null && chain.Route != null)
-        //            {
-        //                report = new RouteInstrumentationReport(_settings, debugReport.ChainId, chain.Route.Pattern);
-        //            }
-        //            else
-        //            {
-        //                report = new RouteInstrumentationReport(_settings, debugReport.ChainId);
-        //            }
-
-        //            report.AddReportLog(debugReport);
-        //            return report;
-        //        },
-        //        (guid, report) =>
-        //        {
-        //            report.AddReportLog(debugReport);
-        //            return report;
-        //        });
-        //}
 
         public IEnumerator<RouteInstrumentationReport> GetEnumerator()
         {
@@ -68,6 +34,25 @@ namespace FubuMVC.Instrumentation.Diagnostics
         {
             RouteInstrumentationReport report;
             return _instrumentationReports.TryGetValue(behaviorId, out report) ? report : null;
+        }
+
+        public void Store(RequestLog log)
+        {
+            _instrumentationReports.AddOrUpdate(log.ChainId,
+                guid =>
+                {
+                    var report = new RouteInstrumentationReport(_settings, log.ChainId, log.Url);
+
+                    report.AddReportLog(log);
+
+                    return report;
+                },
+                (guid, report) =>
+                {
+                    report.AddReportLog(log);
+                    return report;
+                }
+            );
         }
 
         IEnumerator IEnumerable.GetEnumerator()

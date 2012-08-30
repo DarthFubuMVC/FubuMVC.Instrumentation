@@ -74,6 +74,7 @@
     <Compile Include="Diagnostics\RouteInstrumentationReport.cs" />
     <Compile Include="Features\InstrumentationHandlers.cs" />
     <Compile Include="Features\Instrumentation\GetHandler.cs" />
+    <Compile Include="Features\Instrumentation\InstrumentationRequestTrace.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
@@ -113,10 +114,11 @@
     <None Include="instrumentation.assets.config" />
     <None Include="instrumentation.spark.config" />
     <None Include="packages.config" />
+    <None Include="Shared\Temp.spark" />
+    <None Include="Shared\_global.spark" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />
-    <Folder Include="Shared\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
