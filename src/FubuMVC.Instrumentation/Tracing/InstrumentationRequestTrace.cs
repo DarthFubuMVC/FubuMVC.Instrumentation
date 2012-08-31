@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using FubuMVC.Core.Http;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Diagnostics.Runtime.Tracing;
@@ -11,6 +12,7 @@ namespace FubuMVC.Instrumentation.Tracing
         private readonly IInstrumentationReportCache _cache;
         private readonly IRequestLogBuilder _builder;
         private readonly IResponse _response;
+        private readonly Stopwatch _stopwatch = new Stopwatch();
         public RequestLog Current { get; set; }
 
         public InstrumentationRequestTrace(IInstrumentationReportCache cache,
@@ -24,12 +26,15 @@ namespace FubuMVC.Instrumentation.Tracing
 
         public void Start()
         {
+            _stopwatch.Start();
             Current = _builder.BuildForCurrentRequest();
             _cache.Store(Current);
         }
 
         public void MarkFinished()
         {
+            _stopwatch.Stop();
+            Current.ExecutionTime = _stopwatch.ElapsedMilliseconds;
             try
             {
                 Current.ResponseHeaders = _response.AllHeaders();
@@ -42,7 +47,7 @@ namespace FubuMVC.Instrumentation.Tracing
 
         public void Log(object message)
         {
-            throw new NotImplementedException();
+            Current.AddLog(_stopwatch.ElapsedMilliseconds, message);
         }
 
         public void MarkAsFailedRequest()

@@ -27,7 +27,7 @@ namespace FubuMVC.Instrumentation
             {
                 x.SetServiceIfNone<IInstrumentationReportCache, InstrumentationReportCache>();
                 x.SetServiceIfNone<IInstrumentationRequestTrace, InstrumentationRequestTrace>();
-                //x.SetServiceIfNone<IGridRowProvider<InstrumentationCacheModel, RouteInstrumentationModel>, InstrumentationCacheRowProvider>();
+                x.SetServiceIfNone<IAverageChainVisualizerBuilder, AverageChainVisualizerBuilder>();
             });
 
             Import<SparkEngine>();

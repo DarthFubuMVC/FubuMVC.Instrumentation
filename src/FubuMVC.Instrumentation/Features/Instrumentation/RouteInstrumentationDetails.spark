@@ -11,27 +11,30 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span3">
-      <h5>Behavior Chain</h5>
-      <if condition="Model.AverageChain != null">
-        <ul class="chain-visualizer">
-          <li each="var node in Model.AverageChain.BehaviorAverages">
-            <a href="#" id="Node-${node.Id}" class="chain-node btn large">${node.DisplayType} (${node.AverageExecutionTime.ToString("F")} ms)</a>
-          </li>
-        </ul>
-      </if>
-      <else>
-        <span class="label warning">Behavior not found.</span>
-      </else>
-      <div id="chain-arrow" style="display:none">
-        <Image src="down-arrow.png" />
+      <div class="well sidebar-nav">
+        <if condition="Model.AverageChain != null">
+          <ul class="nav nav-list">
+            <li class="nav-header">Behaviors</li>
+            <li each="var node in Model.AverageChain.BehaviorAverages">
+              ${node.DisplayType}
+              <span class="node-trace-duration">${node.AverageExecutionTime.ToString("F")} ms</span>
+            </li>
+          </ul>
+        </if>
+        <else>
+          <span class="label warning">Behavior not found.</span>
+        </else>
+        <div id="chain-arrow" style="display:none">
+          <Image src="down-arrow.png" />
+        </div>
+        <p>
+          <em>
+            <strong>Note:</strong> <br/>
+            This is a visual representation of the corresponding Behavior Chain and the average execution times per node -- the configuration model for your request.<br/><br/>
+            <a href="${this.Urls.UrlFor(new FubuMVC.Diagnostics.Runtime.RequestLog { ChainId = Model.AverageChain.Chain.UniqueId } )}">Click here</a> to view the details of the configuration.
+          </em>
+        </p>
       </div>
-      <p>
-        <em>
-          <strong>Note:</strong> <br/>
-          This is a visual representation of the corresponding Behavior Chain and the average execution times per node -- the configuration model for your request.<br/><br/>
-          <a href="${this.Urls.UrlFor(new FubuMVC.Diagnostics.Runtime.RequestLog { ChainId = Model.AverageChain.Chain.UniqueId } )}">Click here</a> to view the details of the configuration.
-        </em>
-      </p>
     </div>
 
     <div class="span9">
@@ -74,15 +77,13 @@
           <h4>Last ${Model.RequestOverviews.Count} Requests:</h4>
         </else>
         <for each="var overview in Model.RequestOverviews">
-          <div class="alert-message ${overview.HasException ? "error=''" : overview.IsWarning ? string.Empty : "info=''"}">
-            <input type="hidden" value="${overview.Id}"/>
-            <p>
+          <div class="accordion-group ${overview.HasException ? "error" : overview.IsWarning ? string.Empty : "info"}">
+              <input type="hidden" value="${overview.Id}"/>
               <strong>Date Time:</strong>
               <span>${overview.DateTime}</span>
               <span class="seperator">&nbsp;</span>
               <strong>Execution Time:</strong>
               <span>${overview.ExecutionTime} ms</span>
-            </p>
           </div>
           <div class="subdetails well">
           </div>
@@ -118,7 +119,7 @@
         </div>
         <div>
           The request instrumentation that you are trying to access does not exist. Return to the 
-          <a href="${this.Urls.UrlFor<FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRequestModel>()}">instrumentation</a>
+          <a href="${this.Urls.UrlFor<FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRequestModel>()}">Instrumentation</a>
           page to see a list of the current list of instrumentation statistics.
         </div>
       </else>

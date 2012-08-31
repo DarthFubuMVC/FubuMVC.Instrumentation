@@ -113,7 +113,7 @@
     <None Include="Features\Instrumentation\RouteInstrumentation.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Instrumentation\View.spark" />
+    <None Include="Features\Instrumentation\RouteInstrumentationDetails.spark" />
     <None Include="instrumentation.assets.config" />
     <None Include="instrumentation.spark.config" />
     <None Include="packages.config" />

@@ -1,19 +1,41 @@
-.alert-message {
-  margin-bottom: 5px;
+.accordion-group {
+  margin-bottom: 5px !important;
+  padding: 8px 15px;
   cursor: pointer;
 }
 
-h1 {
-  word-wrap: break-word;
+.error {
+  background-color: #852128;
+  color: #FFF;
 }
 
-h1 small {
+.info {
+  background-color: #EDF0EF;
+}
+
+.warning {
+  background-color: #E8E889;
+}
+
+h2 small {
   display: block;
   font-size: 12px;
 }
-h1 span {
-  color: #CCC;
+
+.span3 p, .span3 .warning {
+  margin: 16px !important;
+  display: block;
 }
+
+
+
+
+
+
+
+
+
+/* TODO: Cleanup old styles: */
 
 .seperator {
   display: inline-block;

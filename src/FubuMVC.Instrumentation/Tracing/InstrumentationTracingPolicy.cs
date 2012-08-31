@@ -10,8 +10,7 @@ namespace FubuMVC.Instrumentation.Tracing
         public void Configure(BehaviorGraph graph)
         {
             graph.Behaviors
-                .Where(x => !string.IsNullOrEmpty(x.GetRoutePattern()) &&
-                    !x.GetRoutePattern().Contains(DiagnosticUrlPolicy.DIAGNOSTICS_URL_ROOT))
+                .Where(x => !(x.GetRoutePattern() ?? string.Empty).Contains(DiagnosticUrlPolicy.DIAGNOSTICS_URL_ROOT))
                 .Each(x => new InstrumentationNode(x));
         }
     }
