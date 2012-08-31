@@ -1,4 +1,6 @@
-﻿namespace FubuMVC.Instrumentation.Sample.Controllers
+﻿using System.Threading;
+
+namespace FubuMVC.Instrumentation.Sample.Controllers
 {
     public class HomeController
     {
@@ -13,6 +15,12 @@
             {
                 HelloText = inputModel.HelloText
             };
+        }
+
+        public ReallyLongRequestResourceModel ReallyLongRequest()
+        {
+            Thread.Sleep(10000);
+            return new ReallyLongRequestResourceModel();
         }
 
     }

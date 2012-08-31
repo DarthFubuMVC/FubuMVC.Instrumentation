@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using FubuMVC.Core;
-using FubuMVC.Core.Urls;
+using System.Linq;
 using FubuMVC.Instrumentation.Diagnostics;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 using FubuMVC.SlickGrid;
@@ -10,35 +9,17 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
     public class RoutesSource : IGridDataSource<RouteInstrumentationModel>
     {
         private readonly IInstrumentationReportCache _cache;
-        private readonly DiagnosticsSettings _settings;
-        private readonly IUrlRegistry _urls;
 
-        public RoutesSource(IInstrumentationReportCache cache, DiagnosticsSettings settings, IUrlRegistry urls)
+        public RoutesSource(IInstrumentationReportCache cache)
         {
             _cache = cache;
-            _settings = settings;
-            _urls = urls;
         }
 
         public IEnumerable<RouteInstrumentationModel> GetData()
         {
-            var viewModel = new List<RouteInstrumentationModel>();
+            var reportModels = _cache.Select(log => new RouteInstrumentationModel(log));
 
-            foreach (var log in _cache)
-            {
-                var instrumentationReport = new RouteInstrumentationReport(_settings, log.Id);
-                foreach (var report in log.Reports)
-                {
-                    instrumentationReport.AddReportLog(report);
-                    instrumentationReport.Url = report.Url;
-                    instrumentationReport.ReportUrl = _urls.UrlFor(new InstrumentationInputModel
-                    {
-                        Id = report.ChainId
-                    });
-                }
-                viewModel.Add(new RouteInstrumentationModel(instrumentationReport));
-            }
-            return viewModel;
+            return reportModels;
         }
     }
 }

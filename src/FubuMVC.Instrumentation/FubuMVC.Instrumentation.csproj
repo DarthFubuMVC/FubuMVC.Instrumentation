@@ -80,7 +80,6 @@
     <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModelBuilder.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationDetailsModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationInputModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationRequestModel.cs" />

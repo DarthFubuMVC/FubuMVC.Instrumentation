@@ -116,6 +116,7 @@
     <Compile Include="Controllers\Home\HomeViewModel.cs" />
     <Compile Include="Controllers\Home\OtherInputModel.cs" />
     <Compile Include="Controllers\Home\OtherViewModel.cs" />
+    <Compile Include="Controllers\Home\ReallyLongRequestResourceModel.cs" />
     <Compile Include="Conventions\OtherConvention.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -1,3 +1,9 @@
 ﻿<viewdata model="FubuMVC.Instrumentation.Sample.Controllers.HomeViewModel"/>
 
 Hello! <a href="/_fubu/instrumentation">Instrumentation</a>
+
+<ul>
+  <li>Make a really long request: <a href="/sample/home/reallylongrequest">here</a>.</li>
+  <li>Throw an exception: <a href="/sample/error">here</a>.</li>
+  <li>Make a request with a behavior: <a href="sample/home/otherview?HelloText=Nothing">here</a>.</li>
+</ul>

@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using FubuMVC.Core;
+using FubuMVC.Core.Urls;
 using FubuMVC.Diagnostics.Runtime;
+using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
 namespace FubuMVC.Instrumentation.Diagnostics
 {
@@ -16,13 +18,15 @@ namespace FubuMVC.Instrumentation.Diagnostics
     public class InstrumentationReportCache : IInstrumentationReportCache
     {
         private readonly DiagnosticsSettings _settings;
+        private readonly IUrlRegistry _urls;
 
         private readonly ConcurrentDictionary<Guid, RouteInstrumentationReport> _instrumentationReports =
             new ConcurrentDictionary<Guid, RouteInstrumentationReport>();
 
-        public InstrumentationReportCache(DiagnosticsSettings settings)
+        public InstrumentationReportCache(DiagnosticsSettings settings, IUrlRegistry urls)
         {
             _settings = settings;
+            _urls = urls;
         }
 
         public IEnumerator<RouteInstrumentationReport> GetEnumerator()
@@ -41,16 +45,18 @@ namespace FubuMVC.Instrumentation.Diagnostics
             _instrumentationReports.AddOrUpdate(log.ChainId,
                 guid =>
                 {
-                    var report = new RouteInstrumentationReport(_settings, log.ChainId, log.Url);
+                    var report = new RouteInstrumentationReport(_settings, log.ChainId, log.Url)
+                    {
+                        ReportUrl = _urls.UrlFor(new InstrumentationInputModel {Id = log.ChainId})
+                    };
 
-                    report.AddReportLog(log);
-
-                    return report;
+                    return report.AddReportLog(log);
                 },
                 (guid, report) =>
                 {
-                    report.AddReportLog(log);
-                    return report;
+                    report.ReportUrl = _urls.UrlFor(new InstrumentationInputModel { Id = log.ChainId });
+
+                    return report.AddReportLog(log);
                 }
             );
         }

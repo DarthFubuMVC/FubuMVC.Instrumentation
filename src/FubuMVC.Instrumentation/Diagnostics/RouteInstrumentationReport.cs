@@ -36,7 +36,7 @@ namespace FubuMVC.Instrumentation.Diagnostics
             Url = route;
         }
 
-        public void AddReportLog(RequestLog report)
+        public RouteInstrumentationReport AddReportLog(RequestLog report)
         {
             if (report.Failed)
             {
@@ -53,6 +53,7 @@ namespace FubuMVC.Instrumentation.Diagnostics
                 RequestLog r;
                 _reportCache.TryDequeue(out r);
             }
+            return this;
         }
 
         public void IncrementHitCount()

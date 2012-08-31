@@ -12,9 +12,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
         private readonly IInstrumentationReportCache _reportCache;
         private readonly IAverageChainVisualizerBuilder _averagesBuilder;
 
-        public get_Id_handler(IInstrumentationReportCache reportCache,
-           IAverageChainVisualizerBuilder averagesBuilder
-            )
+        public get_Id_handler(IInstrumentationReportCache reportCache, IAverageChainVisualizerBuilder averagesBuilder)
         {
             _reportCache = reportCache;
             _averagesBuilder = averagesBuilder;
@@ -27,19 +25,12 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
             if (report == null)
                 return new InstrumentationDetailsModel{Id = Guid.Empty};
 
-            var model = new InstrumentationDetailsModel
+            var viewModel = new InstrumentationDetailsModel(report)
             {
-                Id = report.Id,
-                Url = report.Url,
-                AverageExecution = report.AverageExecution,
-                ExceptionCount = report.ExceptionCount,
-                HitCount = report.HitCount,
-                MaxExecution = report.MaxExecution,
-                MinExecution = report.MinExecution,
                 AverageChain = _averagesBuilder.VisualizerFor(inputModel.Id)
             };
 
-            model.RequestOverviews.AddRange(report.Reports
+            viewModel.RequestOverviews.AddRange(report.Reports
                 .OrderByDescending(x => x.Time)
                 .Select(x =>
                 {
@@ -51,18 +42,18 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
                         DateTime = x.Time.ToString(),
                         ExecutionTime = x.ExecutionTime.ToString(),
                         //HasException = visitor.HasExceptions(),
-                        IsWarning = IsWarning(model, x)
+                        IsWarning = IsWarning(viewModel, x)
                     };
                 }));
 
-            return model;
+            return viewModel;
         }
 
-        private bool IsWarning(InstrumentationDetailsModel model, RequestLog report)
+        private static bool IsWarning(RouteInstrumentationModel model, RequestLog report)
         {
             var max = model.MaxExecution;
             var avg = model.AverageExecution;
-            var p1 = 1 - (double)report.ExecutionTime / max;
+            var p1 = 1 - report.ExecutionTime / max;
             var p2 = 1- (double)avg / max;
             return (p2 - p1) > 0.25;
         }

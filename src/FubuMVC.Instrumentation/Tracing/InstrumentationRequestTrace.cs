@@ -28,12 +28,12 @@ namespace FubuMVC.Instrumentation.Tracing
         {
             _stopwatch.Start();
             Current = _builder.BuildForCurrentRequest();
-            _cache.Store(Current);
         }
 
         public void MarkFinished()
         {
             _stopwatch.Stop();
+
             Current.ExecutionTime = _stopwatch.ElapsedMilliseconds;
             try
             {
@@ -42,6 +42,10 @@ namespace FubuMVC.Instrumentation.Tracing
             catch (Exception ex)
             {
                 //TODO: log iis errors.
+            }
+            finally
+            {
+                _cache.Store(Current);
             }
         }
 
