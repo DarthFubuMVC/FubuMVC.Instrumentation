@@ -74,7 +74,8 @@
     <Compile Include="Diagnostics\RouteInstrumentationReport.cs" />
     <Compile Include="Features\InstrumentationHandlers.cs" />
     <Compile Include="Features\Instrumentation\GetHandler.cs" />
-    <Compile Include="Features\Instrumentation\InstrumentationRequestTrace.cs" />
+    <Compile Include="Tracing\InstrumentationNode.cs" />
+    <Compile Include="Tracing\InstrumentationRequestTrace.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
@@ -97,6 +98,8 @@
     <Compile Include="InstrumentationRegistration.cs" />
     <Compile Include="Navigation\InstrumentationKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracing\InstrumentationTracingBehavior.cs" />
+    <Compile Include="Tracing\InstrumentationTracingPolicy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Scripts\instrumentation\instrumentation.js" />

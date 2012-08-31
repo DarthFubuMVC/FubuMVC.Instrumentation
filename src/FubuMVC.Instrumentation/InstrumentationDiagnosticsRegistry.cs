@@ -1,10 +1,10 @@
 ﻿using FubuMVC.Core;
 using FubuMVC.Core.Registration.Conventions;
-using FubuMVC.Diagnostics.Runtime.Tracing;
 using FubuMVC.Instrumentation.Diagnostics;
 using FubuMVC.Instrumentation.Features;
 using FubuMVC.Instrumentation.Features.Instrumentation;
 using FubuMVC.Instrumentation.Navigation;
+using FubuMVC.Instrumentation.Tracing;
 using FubuMVC.Spark;
 
 namespace FubuMVC.Instrumentation
@@ -26,6 +26,7 @@ namespace FubuMVC.Instrumentation
             Services(x =>
             {
                 x.SetServiceIfNone<IInstrumentationReportCache, InstrumentationReportCache>();
+                x.SetServiceIfNone<IInstrumentationRequestTrace, InstrumentationRequestTrace>();
                 //x.SetServiceIfNone<IGridRowProvider<InstrumentationCacheModel, RouteInstrumentationModel>, InstrumentationCacheRowProvider>();
             });
 
