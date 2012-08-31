@@ -1,31 +1,29 @@
 ﻿using System.Collections.Generic;
-using FubuMVC.Diagnostics.Runtime;
+using System.Linq;
+using FubuMVC.Instrumentation.Tracing;
 
 namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
 {
     public class InstrumentationRouteDetailsModel
     {
+        public InstrumentationRouteDetailsModel()
+        {
+        }
+        public InstrumentationRouteDetailsModel(InstrumentationRequestLog log)
+        {
+            if(log.RequestLog.Failed)
+            {
+                Exception = log.Exception.Message;
+            }
+        }
         public IList<BehaviorDetailModel> Behaviors { get; set; }
+        public string Exception { get; set; }
     }
 
     public class BehaviorDetailModel
     {
-        public BehaviorDetailModel(RequestLog report)
-        {
-            //Name = report.BehaviorType.PrettyPrint();
-            //Description = report.Description;
-            ExecutionTime = report.ExecutionTime;
-
-            //var visitor = new RecordedRequestBehaviorVisitor();
-            //report.Each(x => x.AcceptVisitor(visitor));
-            //if (visitor.HasExceptions())
-            //{
-            //    Exception = visitor.Exceptions().Replace("\r", "<br/>");
-            //}
-        }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public double ExecutionTime { get; private set; }
-        public string Exception { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public double ExecutionTime { get; set; }
     }
 }

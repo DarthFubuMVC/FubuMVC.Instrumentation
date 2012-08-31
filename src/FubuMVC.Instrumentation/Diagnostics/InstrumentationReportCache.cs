@@ -4,15 +4,15 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using FubuMVC.Core;
 using FubuMVC.Core.Urls;
-using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
+using FubuMVC.Instrumentation.Tracing;
 
 namespace FubuMVC.Instrumentation.Diagnostics
 {
     public interface IInstrumentationReportCache : IEnumerable<RouteInstrumentationReport>
     {
         RouteInstrumentationReport GetReport(Guid behaviorId);
-        void Store(RequestLog log);
+        void Store(InstrumentationRequestLog log);
     }
 
     public class InstrumentationReportCache : IInstrumentationReportCache
@@ -40,21 +40,22 @@ namespace FubuMVC.Instrumentation.Diagnostics
             return _instrumentationReports.TryGetValue(behaviorId, out report) ? report : null;
         }
 
-        public void Store(RequestLog log)
+        public void Store(InstrumentationRequestLog log)
         {
-            _instrumentationReports.AddOrUpdate(log.ChainId,
+            _instrumentationReports.AddOrUpdate(log.RequestLog.ChainId,
                 guid =>
                 {
-                    var report = new RouteInstrumentationReport(_settings, log.ChainId, log.Url)
+                    var chainId = log.RequestLog.ChainId;
+                    var report = new RouteInstrumentationReport(_settings, chainId, log.RequestLog.Url)
                     {
-                        ReportUrl = _urls.UrlFor(new InstrumentationInputModel {Id = log.ChainId})
+                        ReportUrl = _urls.UrlFor(new InstrumentationInputModel {Id = chainId})
                     };
 
                     return report.AddReportLog(log);
                 },
                 (guid, report) =>
                 {
-                    report.ReportUrl = _urls.UrlFor(new InstrumentationInputModel { Id = log.ChainId });
+                    report.ReportUrl = _urls.UrlFor(new InstrumentationInputModel { Id = log.RequestLog.ChainId });
 
                     return report.AddReportLog(log);
                 }

@@ -57,7 +57,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
             }).ToList();
 
             _cache.GetReport(uniqueId).Reports.Each(
-                debugReport => debugReport.AllSteps().Each(behaviorReport =>
+                debugReport => debugReport.RequestLog.AllSteps().Each(behaviorReport =>
                 {
                     AverageBehaviorModel model;
                     if (keyedAverages.TryGetValue(behaviorReport.Id, out model))

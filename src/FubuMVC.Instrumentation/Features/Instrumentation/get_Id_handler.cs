@@ -31,19 +31,14 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
             };
 
             viewModel.RequestOverviews.AddRange(report.Reports
-                .OrderByDescending(x => x.Time)
-                .Select(x =>
+                .OrderByDescending(x => x.RequestLog.Time)
+                .Select(x => new InstrumentationRequestOverviewModel
                 {
-                    //var visitor = new RecordedRequestBehaviorVisitor();
-                    //x.Steps.Each(s => s.Details.AcceptVisitor(visitor));
-                    return new InstrumentationRequestOverviewModel
-                    {
-                        Id = x.Id,
-                        DateTime = x.Time.ToString(),
-                        ExecutionTime = x.ExecutionTime.ToString(),
-                        //HasException = visitor.HasExceptions(),
-                        IsWarning = IsWarning(viewModel, x)
-                    };
+                    Id = x.RequestLog.Id,
+                    DateTime = x.RequestLog.Time.ToString(),
+                    ExecutionTime = x.RequestLog.ExecutionTime.ToString(),
+                    HasException = x.RequestLog.Failed,
+                    IsWarning = IsWarning(viewModel, x.RequestLog)
                 }));
 
             return viewModel;

@@ -4,8 +4,7 @@
 <viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationDetailsModel"/>
 
 <Stylesheet href="instrumentationdetails.css" />
-<Script src="instrumentationroutedetails.js" />
-
+<Script src="instrumentationdetails" />
 
 <content:main>
 <div class="container-fluid">

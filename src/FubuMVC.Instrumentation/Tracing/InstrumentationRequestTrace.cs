@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using FubuMVC.Core.Http;
-using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Diagnostics.Runtime.Tracing;
 using FubuMVC.Instrumentation.Diagnostics;
 
@@ -13,7 +12,7 @@ namespace FubuMVC.Instrumentation.Tracing
         private readonly IRequestLogBuilder _builder;
         private readonly IResponse _response;
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        public RequestLog Current { get; set; }
+        public InstrumentationRequestLog Current { get; set; }
 
         public InstrumentationRequestTrace(IInstrumentationReportCache cache,
             IRequestLogBuilder builder,
@@ -27,17 +26,20 @@ namespace FubuMVC.Instrumentation.Tracing
         public void Start()
         {
             _stopwatch.Start();
-            Current = _builder.BuildForCurrentRequest();
+            Current = new InstrumentationRequestLog
+            {
+                RequestLog = _builder.BuildForCurrentRequest()
+            };
         }
 
         public void MarkFinished()
         {
             _stopwatch.Stop();
 
-            Current.ExecutionTime = _stopwatch.ElapsedMilliseconds;
+            Current.RequestLog.ExecutionTime = _stopwatch.ElapsedMilliseconds;
             try
             {
-                Current.ResponseHeaders = _response.AllHeaders();
+                Current.RequestLog.ResponseHeaders = _response.AllHeaders();
             }
             catch (Exception ex)
             {
@@ -51,21 +53,31 @@ namespace FubuMVC.Instrumentation.Tracing
 
         public void Log(object message)
         {
-            Current.AddLog(_stopwatch.ElapsedMilliseconds, message);
+            Current.RequestLog.AddLog(_stopwatch.ElapsedMilliseconds, message);
         }
 
-        public void MarkAsFailedRequest()
+        public void MarkAsFailedRequest(Exception ex)
         {
-            Current.Failed = true;
+            Current.RequestLog.Failed = true;
+            Current.Exception = ex;
         }
 
         public string LogUrl
         {
-            get { return Current.ReportUrl; }
+            get { return Current.RequestLog.ReportUrl; }
         }
     }
 
-    public interface IInstrumentationRequestTrace : IRequestTrace
+    public interface IInstrumentationRequestTrace
     {
+        string LogUrl { get; }
+
+        void Start();
+
+        void MarkFinished();
+
+        void Log(object message);
+
+        void MarkAsFailedRequest(Exception ex);
     }
 }

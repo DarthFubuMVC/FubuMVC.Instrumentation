@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using FubuMVC.Core;
 using FubuMVC.Diagnostics.Runtime;
+using FubuMVC.Instrumentation.Tracing;
 
 namespace FubuMVC.Instrumentation.Diagnostics
 {
@@ -14,8 +15,8 @@ namespace FubuMVC.Instrumentation.Diagnostics
         private long _minExecution = long.MaxValue;
         private long _maxExecution;
         private long _totalExecutionTime;
-        public IList<RequestLog> Reports { get { return _reportCache.ToArray(); } }
-        private readonly ConcurrentQueue<RequestLog> _reportCache;
+        public IList<InstrumentationRequestLog> Reports { get { return _reportCache.ToArray(); } }
+        private readonly ConcurrentQueue<InstrumentationRequestLog> _reportCache;
         private readonly DiagnosticsSettings _settings;
 
         public decimal AverageExecution { get { return _totalExecutionTime * 1m / _hitCount; } }
@@ -31,26 +32,26 @@ namespace FubuMVC.Instrumentation.Diagnostics
         public RouteInstrumentationReport(DiagnosticsSettings settings, Guid behaviorId, string route = null)
         {
             _settings = settings;
-            _reportCache = new ConcurrentQueue<RequestLog>();
+            _reportCache = new ConcurrentQueue<InstrumentationRequestLog>();
             Id = behaviorId;
             Url = route;
         }
 
-        public RouteInstrumentationReport AddReportLog(RequestLog report)
+        public RouteInstrumentationReport AddReportLog(InstrumentationRequestLog report)
         {
-            if (report.Failed)
+            if (report.RequestLog.Failed)
             {
                 IncrementExceptionCount();
             }
 
             IncrementHitCount();
-            AddExecutionTime((long)report.ExecutionTime);
+            AddExecutionTime((long)report.RequestLog.ExecutionTime);
 
             _reportCache.Enqueue(report);
 
             while (_reportCache.Count > _settings.MaxRequests)
             {
-                RequestLog r;
+                InstrumentationRequestLog r;
                 _reportCache.TryDequeue(out r);
             }
             return this;

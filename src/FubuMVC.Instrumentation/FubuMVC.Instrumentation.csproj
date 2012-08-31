@@ -76,6 +76,7 @@
     <Compile Include="Features\Instrumentation\GetHandler.cs" />
     <Compile Include="Features\Instrumentation\RoutesSource.cs" />
     <Compile Include="Tracing\InstrumentationNode.cs" />
+    <Compile Include="Tracing\InstrumentationRequestLog.cs" />
     <Compile Include="Tracing\InstrumentationRequestTrace.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
@@ -102,8 +103,7 @@
     <Compile Include="Tracing\InstrumentationTracingPolicy.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Scripts\instrumentation\instrumentation.js" />
-    <Content Include="Content\Scripts\instrumentation\instrumentationroutedetails.js" />
+    <Content Include="Content\Scripts\instrumentationdetails.js" />
     <Content Include="Content\Styles\instrumentation.css" />
     <Content Include="Content\Styles\instrumentationdetails.css" />
     <Content Include="Features\Instrumentation\old.txt" />

@@ -32,12 +32,12 @@ namespace FubuMVC.Instrumentation.Tracing
             }
             catch (UnhandledFubuException ex)
             {
-                _trace.MarkAsFailedRequest();
+                _trace.MarkAsFailedRequest(ex);
                 throw ex.InnerException;
             }
             catch (Exception ex)
             {
-                _trace.MarkAsFailedRequest();
+                _trace.MarkAsFailedRequest(ex);
                 _trace.Log(new ExceptionReport("Request failed", ex));
                 throw;
             }
