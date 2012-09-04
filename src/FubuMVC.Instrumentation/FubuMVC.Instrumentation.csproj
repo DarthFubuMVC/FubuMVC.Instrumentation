@@ -118,11 +118,10 @@
     <None Include="instrumentation.assets.config" />
     <None Include="instrumentation.spark.config" />
     <None Include="packages.config" />
-    <None Include="Shared\Temp.spark" />
-    <None Include="Shared\_global.spark" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />
+    <Folder Include="Shared\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

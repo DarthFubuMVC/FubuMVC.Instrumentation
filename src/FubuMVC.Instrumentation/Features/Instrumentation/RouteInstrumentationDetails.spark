@@ -1,5 +1,4 @@
-﻿<use master="Temp" />
-<use namespace="System" />
+﻿<use namespace="System" />
 <use namespace="FubuMVC.TwitterBootstrap" />
 <viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationDetailsModel"/>
 
