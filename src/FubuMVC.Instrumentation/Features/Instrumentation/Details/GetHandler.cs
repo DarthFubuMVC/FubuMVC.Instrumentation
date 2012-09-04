@@ -24,17 +24,10 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Details
 
             var viewModel = new InstrumentationRouteDetailsModel(log);
 
-            viewModel.Behaviors = log.RequestLog.AllSteps().Select(x =>
-            {
-                var desc = _visualizer.ToVisualizationSubject(x.Log).As<CollapsedDescription>();
-
-                return new BehaviorDetailModel
-                {
-                    Name = desc.Description.Title,
-                    Description = desc.Description.ShortDescription,
-                    ExecutionTime = x.RequestTimeInMilliseconds
-                };
-            }).ToList();
+            //viewModel.Behaviors = log.RequestLog.AllSteps().Select(x =>
+            //{
+            //TODO: Build details about behaviors.
+            //}).ToList();
 
             return viewModel;
         }
