@@ -22,7 +22,7 @@
         var cell = grid.getCellFromEvent(e),
             item = grid.getDataItem(cell.row);
 
-          window.location = item.ReportUrl;
+        window.location = item.ReportUrl;
       });
     }
   }

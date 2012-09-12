@@ -45,7 +45,7 @@
     </Reference>
     <Reference Include="FubuMVC.Diagnostics, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FubuMVC.Diagnostics.0.1.0.22\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
+      <HintPath>..\packages\FubuMVC.Diagnostics.0.1.0.4\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="FubuMVC.JQueryUI">
       <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.49\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
@@ -71,52 +71,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Diagnostics\InstrumentationReportCache.cs" />
-    <Compile Include="Diagnostics\RouteInstrumentationReport.cs" />
+    <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModelExtensions.cs" />
+    <Compile Include="Runtime\IInstrumentationReportCache.cs" />
+    <Compile Include="Runtime\InstrumentationReportCache.cs" />
+    <Compile Include="Runtime\InstrumentationRequestNotifier.cs" />
+    <Compile Include="Runtime\RouteInstrumentationReport.cs" />
     <Compile Include="Features\InstrumentationHandlers.cs" />
     <Compile Include="Features\Instrumentation\GetHandler.cs" />
     <Compile Include="Features\Instrumentation\RoutesSource.cs" />
-    <Compile Include="Tracing\InstrumentationNode.cs" />
-    <Compile Include="Tracing\InstrumentationRequestLog.cs" />
-    <Compile Include="Tracing\InstrumentationRequestTrace.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationDetailsModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationInputModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsInputModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationRequestModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationRequestOverviewModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsRequestModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsInputModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationRouteRequestModel.cs" />
     <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModel.cs" />
     <Compile Include="Features\Instrumentation\RoutesGrid.cs" />
-    <Compile Include="Features\Instrumentation\AverageChainVisualizerBuilder.cs" />
-    <Compile Include="Features\Instrumentation\Details\GetHandler.cs" />
-    <Compile Include="Features\Instrumentation\get_Id_handler.cs" />
-    <Compile Include="Features\Instrumentation\IAverageChainVisualizerBuilder.cs" />
+    <Compile Include="Chains\AverageChainVisualizerBuilder.cs" />
+    <Compile Include="Features\Instrumentation\RequestDetails\GetHandler.cs" />
+    <Compile Include="Features\Instrumentation\RouteDetails\GetHandler.cs" />
+    <Compile Include="Chains\IAverageChainVisualizerBuilder.cs" />
     <Compile Include="InstrumentationDiagnosticsRegistry.cs" />
     <Compile Include="Navigation\InstrumentationMenu.cs" />
     <Compile Include="InstrumentationRegistration.cs" />
     <Compile Include="Navigation\InstrumentationKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tracing\InstrumentationTracingBehavior.cs" />
-    <Compile Include="Tracing\InstrumentationTracingPolicy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Scripts\instrumentationdetails.js" />
-    <Content Include="Content\Styles\instrumentation.css" />
     <Content Include="Content\Styles\instrumentationdetails.css" />
-    <Content Include="Features\Instrumentation\old.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".package-manifest" />
-    <None Include="Features\Instrumentation\RouteInstrumentation.spark">
+    <None Include="Features\Instrumentation\RequestDetails\InstrumentationRequestDetails.spark" />
+    <None Include="Features\Instrumentation\Instrumentation.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Instrumentation\RouteInstrumentationDetails.spark" />
-    <None Include="instrumentation.assets.config" />
-    <None Include="instrumentation.spark.config" />
+    <None Include="Features\Instrumentation\RouteDetails\RouteInstrumentationDetails.spark" />
+    <None Include="instrumentation.asset.config" />
+    <None Include="instrumentation.spark.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

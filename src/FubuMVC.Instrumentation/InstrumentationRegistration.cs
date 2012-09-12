@@ -1,6 +1,5 @@
 ﻿using FubuMVC.Core;
-using FubuMVC.Diagnostics.Runtime.Tracing;
-using FubuMVC.Instrumentation.Tracing;
+using FubuMVC.Diagnostics;
 
 namespace FubuMVC.Instrumentation
 {
@@ -8,8 +7,7 @@ namespace FubuMVC.Instrumentation
     {
         public void Configure(FubuRegistry registry)
         {
-            registry.Policies.Add<InstrumentationTracingPolicy>();
-            registry.Import<InstrumentationDiagnosticsRegistry>(DiagnosticUrlPolicy.DIAGNOSTICS_URL_ROOT);
+            registry.Import<InstrumentationDiagnosticsRegistry>(DiagnosticsRegistration.DIAGNOSTICS_URL_ROOT);
         }
     }
 }

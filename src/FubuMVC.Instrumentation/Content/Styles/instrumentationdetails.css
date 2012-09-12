@@ -27,16 +27,6 @@ h2 small {
   display: block;
 }
 
-
-
-
-
-
-
-
-
-/* TODO: Cleanup old styles: */
-
 .seperator {
   display: inline-block;
   border-right: solid 1px #FFF;
@@ -44,34 +34,10 @@ h2 small {
   opacity: 0.4;
 }
 
-.overview ul {
-  margin-left: 15px;
-}
-
-.overview li {
-  line-height: 22px;
-}
-
-.overview span {
-  font-weight: bold;
-  display: inline-block;
-  width: 200px;
-}
-
-.exceptiondetails {
-  border: 1px solid #E4C652;
-  background: #EEDC94;
-  padding: 10px;
-  margin-right: 18px;
-}
-
 .subdetails {
   display:none;
 }
 
-.detailselement {
-  margin-left: 10px;
-}
 .chain-visualizer {
   list-style: none;
 }

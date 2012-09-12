@@ -1,7 +1,7 @@
 using System;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
-namespace FubuMVC.Instrumentation.Features.Instrumentation
+namespace FubuMVC.Instrumentation.Chains
 {
     public interface IAverageChainVisualizerBuilder
     {

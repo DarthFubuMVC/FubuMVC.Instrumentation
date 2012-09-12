@@ -4,10 +4,10 @@ using System.Linq;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuCore;
-using FubuMVC.Instrumentation.Diagnostics;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
+using FubuMVC.Instrumentation.Runtime;
 
-namespace FubuMVC.Instrumentation.Features.Instrumentation
+namespace FubuMVC.Instrumentation.Chains
 {
     //TODO: Update to work with new structure:
     public class AverageChainVisualizerBuilder : IAverageChainVisualizerBuilder
@@ -57,7 +57,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
             }).ToList();
 
             _cache.GetReport(uniqueId).Reports.Each(
-                debugReport => debugReport.RequestLog.AllSteps().Each(behaviorReport =>
+                debugReport => debugReport.AllSteps().Each(behaviorReport =>
                 {
                     AverageBehaviorModel model;
                     if (keyedAverages.TryGetValue(behaviorReport.Id, out model))

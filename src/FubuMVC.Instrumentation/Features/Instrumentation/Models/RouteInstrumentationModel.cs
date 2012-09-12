@@ -1,5 +1,5 @@
 using System;
-using FubuMVC.Instrumentation.Diagnostics;
+using FubuMVC.Instrumentation.Runtime;
 
 namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
 {

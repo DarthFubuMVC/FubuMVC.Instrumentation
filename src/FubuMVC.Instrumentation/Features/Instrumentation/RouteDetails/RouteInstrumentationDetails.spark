@@ -1,9 +1,11 @@
 ﻿<use namespace="System" />
 <use namespace="FubuMVC.TwitterBootstrap" />
-<viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationDetailsModel"/>
+<viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRouteDetailsModel"/>
 
+<Script src="instrumentationdetails.js" />
 <Stylesheet href="instrumentationdetails.css" />
-<Script src="instrumentationdetails" />
+
+<var requestCount="Model.RequestsCount" />
 
 <content:main>
 <div class="container-fluid">
@@ -12,7 +14,7 @@
       <div class="well sidebar-nav">
         <if condition="Model.AverageChain != null">
           <ul class="nav nav-list">
-            <li class="nav-header">Behaviors</li>
+            <li class="nav-header">Behavior Averages</li>
             <li each="var node in Model.AverageChain.BehaviorAverages">
               ${node.DisplayType}
               <span class="node-trace-duration">${node.AverageExecutionTime.ToString("F")} ms</span>
@@ -65,14 +67,14 @@
             </li>
           </ul>
         </div>
-        <if condition="Model.RequestOverviews.Count == 0">
+        <if condition="requestCount == 0">
           <h3>No Requests</h3>
         </if>
-        <else if="Model.RequestOverviews.Count == 1">
+        <else if="requestCount == 1">
           <h3>Last Request:</h3>
         </else>
         <else>
-          <h4>Last ${Model.RequestOverviews.Count} Requests:</h4>
+          <h4>Last ${requestCount} Requests:</h4>
         </else>
         <for each="var overview in Model.RequestOverviews">
           <div class="accordion-group ${overview.HasException ? "error" : overview.IsWarning ? string.Empty : "info"}">
@@ -86,30 +88,6 @@
           <div class="subdetails well">
           </div>
         </for>
-        <ignore>
-          <script id="detailsTemplate" type="text/x-jquery-tmpl">
-            <div class="detailselement">
-              ${Name}
-              <ul>
-                <li>Description: ${Description}</li>
-                <li>Execution Time: ${ExecutionTime} ms</li>
-                {{if Exception}}
-                <li>
-                  Exception:
-                  <div class="exceptiondetails">
-                    {{html Exception}}
-                  </div>
-                </li>
-                {{/if}}
-              </ul>
-            </div>
-          </script>
-          <script id="noDetailsTemplate" type="text/x-jquery-tmpl">
-            <div class="detailselement">
-              Details have been removed from the cache
-            </div>
-          </script>
-        </ignore>
       </if>
       <else>
         <div id="request-header" class="hero-unit">

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using FubuMVC.Instrumentation.Diagnostics;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
+using FubuMVC.Instrumentation.Runtime;
 using FubuMVC.SlickGrid;
 
 namespace FubuMVC.Instrumentation.Features.Instrumentation
@@ -17,9 +17,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
 
         public IEnumerable<RouteInstrumentationModel> GetData()
         {
-            var reportModels = _cache.Select(log => new RouteInstrumentationModel(log));
-
-            return reportModels;
+            return _cache.Select(log => new RouteInstrumentationModel(log)).ToList();
         }
     }
 }

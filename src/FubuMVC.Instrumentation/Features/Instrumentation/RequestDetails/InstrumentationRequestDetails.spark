@@ -1,0 +1,10 @@
+﻿<use master="" />
+<viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRequestDetailsModel"/>
+<use namespace="FubuMVC.Diagnostics.Requests" />
+<use namespace="System.Linq" />
+<use namespace="FubuMVC.TwitterBootstrap" />
+<use namespace="FubuMVC.Diagnostics.Visualization" />
+
+<div class="row-fluid">
+  !{this.Visualize(Model.Log.AllSteps())}
+</div>
