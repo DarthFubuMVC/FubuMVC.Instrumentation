@@ -17,7 +17,10 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
 
         public IEnumerable<RouteInstrumentationModel> GetData()
         {
-            return _cache.Select(log => new RouteInstrumentationModel(log)).ToList();
+            return _cache.Select(log => new RouteInstrumentationModel(log))
+                .OrderByDescending(x => x.ExceptionCount)
+                .ThenByDescending(x => x.MaxExecution)
+                .ToList();
         }
     }
 }
