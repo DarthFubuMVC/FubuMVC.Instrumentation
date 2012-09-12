@@ -2,7 +2,7 @@ using FubuMVC.Diagnostics.Runtime;
 
 namespace FubuMVC.Instrumentation.Runtime
 {
-    public class InstrumentationRequestNotifier : IRequestTraceNotifier
+    public class InstrumentationRequestNotifier : IRequestTraceObserver
     {
         private readonly IInstrumentationReportCache _cache;
 
@@ -11,11 +11,11 @@ namespace FubuMVC.Instrumentation.Runtime
             _cache = cache;
         }
 
-        public void OnStart(RequestLog log)
+        public void Started(RequestLog log)
         {
         }
 
-        public void OnComplete(RequestLog log)
+        public void Completed(RequestLog log)
         {
             _cache.Store(log);
         }

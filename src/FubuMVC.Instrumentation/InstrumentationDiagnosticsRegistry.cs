@@ -29,7 +29,7 @@ namespace FubuMVC.Instrumentation
                 x.SetServiceIfNone<IInstrumentationReportCache,InstrumentationReportCache>();
                 x.SetServiceIfNone<IAverageChainVisualizerBuilder, AverageChainVisualizerBuilder>();
 
-                x.AddService<IRequestTraceNotifier, InstrumentationRequestNotifier>();
+                x.AddService<IRequestTraceObserver, InstrumentationRequestNotifier>();
             });
 
             Import<SparkEngine>();
