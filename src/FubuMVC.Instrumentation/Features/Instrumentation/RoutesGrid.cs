@@ -12,6 +12,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
             Column(x => x.AverageExecution).Title("Average Execution Time (ms)");
             Column(x => x.HitCount).Title("Hit Count");
             Column(x => x.ExceptionCount).Title("Exception Count");
+            Column(x => x.ExceptionFrequency).Title("Exception Frequency");
             Column(x => x.MinExecution).Title("Min Execution Time (ms)");
             Column(x => x.MaxExecution).Title("Max Execution Time (ms)");
             Data(x => x.Id);

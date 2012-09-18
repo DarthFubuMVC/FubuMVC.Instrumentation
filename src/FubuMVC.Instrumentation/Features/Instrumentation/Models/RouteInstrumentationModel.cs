@@ -14,6 +14,11 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
         public long MaxExecution { get; set; }
         public long ExceptionCount { get; set; }
 
+        public string ExceptionFrequency
+        {
+            get { return String.Format("{0}%", (int)((ExceptionCount / (double)HitCount) * 100)); }
+        }
+
         public RouteInstrumentationModel()
         {
 
