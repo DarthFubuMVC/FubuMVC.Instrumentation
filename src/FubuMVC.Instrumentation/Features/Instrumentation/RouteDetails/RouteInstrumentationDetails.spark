@@ -1,4 +1,5 @@
-﻿<use namespace="System" />
+﻿<use master=""/>
+<use namespace="System" />
 <use namespace="FubuMVC.TwitterBootstrap" />
 <viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRouteDetailsModel"/>
 
@@ -7,7 +8,6 @@
 
 <var requestCount="Model.RequestsCount" />
 
-<content:main>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span3">
@@ -102,4 +102,3 @@
     </div>
   </div>
 </div>
-</content:main>

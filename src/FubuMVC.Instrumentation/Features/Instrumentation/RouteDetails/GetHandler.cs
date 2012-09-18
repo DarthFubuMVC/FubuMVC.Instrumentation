@@ -1,4 +1,6 @@
 ﻿using System;
+using FubuMVC.Core.Behaviors.Chrome;
+using FubuMVC.Diagnostics.Chrome;
 using FubuMVC.Instrumentation.Chains;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 using FubuMVC.Instrumentation.Runtime;
@@ -16,6 +18,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.RouteDetails
             _averagesBuilder = averagesBuilder;
         }
 
+        [Chrome(typeof (DashboardChrome), Title = "Instrumentation Route Details")]
         public InstrumentationRouteDetailsModel Execute(InstrumentationRouteDetailsInputModel inputModel)
         {
             var report = _reportCache.GetReport(inputModel.Id);
