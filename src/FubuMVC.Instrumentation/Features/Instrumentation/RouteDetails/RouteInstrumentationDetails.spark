@@ -77,7 +77,7 @@
           <h4>Last ${requestCount} Requests:</h4>
         </else>
         <for each="var overview in Model.RequestOverviews">
-          <div class="accordion-group ${overview.HasException ? "error" : overview.IsWarning ? string.Empty : "info"}">
+          <div class="accordion-group ${overview.HasException ? "error" : overview.IsWarning ? "warning" : "info"}">
               <input type="hidden" value="${overview.Id}"/>
               <strong>Date Time:</strong>
               <span>${overview.DateTime}</span>

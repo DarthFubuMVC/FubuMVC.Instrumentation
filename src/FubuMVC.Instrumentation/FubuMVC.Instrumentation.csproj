@@ -111,7 +111,9 @@
     <None Include="Features\Instrumentation\Instrumentation.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Features\Instrumentation\RouteDetails\RouteInstrumentationDetails.spark" />
+    <None Include="Features\Instrumentation\RouteDetails\RouteInstrumentationDetails.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="instrumentation.asset.config" />
     <None Include="instrumentation.spark.config">
       <SubType>Designer</SubType>
