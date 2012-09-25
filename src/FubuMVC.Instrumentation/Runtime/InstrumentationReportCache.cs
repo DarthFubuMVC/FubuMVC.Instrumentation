@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using FubuCore;
 using FubuMVC.Core;
+using FubuMVC.Core.Registration;
 using FubuMVC.Core.Urls;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
@@ -14,16 +16,18 @@ namespace FubuMVC.Instrumentation.Runtime
     {
         private readonly DiagnosticsSettings _settings;
         private readonly IUrlRegistry _urls;
+        private readonly BehaviorGraph _graph;
 
         private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
 
         private readonly IDictionary<Guid, RouteInstrumentationReport> _instrumentationReports =
             new Dictionary<Guid, RouteInstrumentationReport>();
 
-        public InstrumentationReportCache(DiagnosticsSettings settings, IUrlRegistry urls)
+        public InstrumentationReportCache(DiagnosticsSettings settings, IUrlRegistry urls, BehaviorGraph graph)
         {
             _settings = settings;
             _urls = urls;
+            _graph = graph;
         }
 
         public IEnumerator<RouteInstrumentationReport> GetEnumerator()
@@ -51,7 +55,9 @@ namespace FubuMVC.Instrumentation.Runtime
                 }
                 else
                 {
-                    var report = new RouteInstrumentationReport(_settings, id, log.Url)
+                    var behavior = _graph.Behaviors.FirstOrDefault(x => x.UniqueId == log.ChainId);
+
+                    var report = new RouteInstrumentationReport(_settings, id, behavior.GetRoute())
                     {
                         ReportUrl = _urls.UrlFor(new InstrumentationRouteDetailsInputModel { Id = id })
                     };
