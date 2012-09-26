@@ -31,7 +31,7 @@
           <em>
             <strong>Note:</strong> <br/>
             This is a visual representation of the corresponding Behavior Chain and the average execution times per node -- the configuration model for your request.<br/><br/>
-            <a href="${this.Urls.UrlFor(new FubuMVC.Diagnostics.Runtime.RequestLog { ChainId = Model.AverageChain.Chain.UniqueId } )}">Click here</a> to view the details of the configuration.
+            <a href="${this.Urls.UrlFor(new FubuMVC.Diagnostics.Chains.ChainDetailsRequest { Id = Model.AverageChain.Chain.UniqueId } )}">Click here</a> to view the details of the configuration.
           </em>
         </p>
       </div>
