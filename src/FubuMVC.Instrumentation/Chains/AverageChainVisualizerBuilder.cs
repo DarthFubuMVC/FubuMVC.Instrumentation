@@ -4,19 +4,18 @@ using System.Linq;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuCore;
+using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 using FubuMVC.Instrumentation.Runtime;
 
 namespace FubuMVC.Instrumentation.Chains
 {
-    //TODO: Update to work with new structure:
     public class AverageChainVisualizerBuilder : IAverageChainVisualizerBuilder
     {
         private readonly BehaviorGraph _graph;
         private readonly IInstrumentationReportCache _cache;
 
-        public AverageChainVisualizerBuilder(BehaviorGraph graph,
-            IInstrumentationReportCache cache)
+        public AverageChainVisualizerBuilder(BehaviorGraph graph, IInstrumentationReportCache cache)
         {
             _graph = graph;
             _cache = cache;
@@ -28,44 +27,51 @@ namespace FubuMVC.Instrumentation.Chains
                 .Behaviors
                 .SingleOrDefault(c => c.UniqueId == uniqueId);
 
-            if (chain == null)
-            {
-                return null;
-            }
+            if (chain == null) return null;
 
             return new AverageChainModel
             {
                 Chain = chain,
-                BehaviorAverages = BuildBehaviorAverages(uniqueId, chain)
+                BehaviorAverages = BuildBehaviorAverages(chain)
             };
         }
 
-        private IEnumerable<AverageBehaviorModel> BuildBehaviorAverages(Guid uniqueId, BehaviorChain chain)
+        private IEnumerable<AverageBehaviorModel> BuildBehaviorAverages(BehaviorChain chain)
         {
-            var keyedAverages = new Dictionary<Guid, AverageBehaviorModel>();
-            var averages = chain.Select(c =>
-            {
-                var behavior = new AverageBehaviorModel
+            var report = _cache.GetReport(chain.UniqueId);
+            var averages = chain
+                .Where(node =>
+                    node.BehaviorType.AssemblyQualifiedName != null
+                    && !node.BehaviorType.AssemblyQualifiedName.StartsWith("FubuMVC.Instrumentation")
+                    && !node.BehaviorType.AssemblyQualifiedName.StartsWith("FubuMVC.Diagnostics"))
+                .Select(node =>
                 {
-                    Id = c.UniqueId,
-                    DisplayType = c.GetType().PrettyPrint(),
-                    BehaviorType = c.ToString()
-                };
-
-                keyedAverages.Add(c.UniqueId, behavior);
-                return behavior;
-            }).ToList();
-
-            _cache.GetReport(uniqueId).Reports.Each(
-                debugReport => debugReport.AllSteps().Each(behaviorReport =>
-                {
-                    AverageBehaviorModel model;
-                    if (keyedAverages.TryGetValue(behaviorReport.Id, out model))
+                    var behavior = new AverageBehaviorModel
                     {
-                        model.HitCount++;
-                        model.TotalExecutionTime += behaviorReport.RequestTimeInMilliseconds;
+                        Id = node.UniqueId,
+                        DisplayType = node.GetType().PrettyPrint(),
+                        BehaviorType = node.ToString()
+                    };
+
+                    if (report != null && report.Reports.Any())
+                    {
+                        report.Reports.Each(log =>
+                        {
+                            var startStep = log.FindStep<BehaviorStart>(s => s.Correlation.Node.UniqueId == node.UniqueId);
+                            var endStep = log.FindStep<BehaviorFinish>(s => s.Correlation.Node.UniqueId == node.UniqueId);
+                            if (startStep != null && endStep != null)
+                            {
+                                var span = endStep.Log.Time - startStep.Log.Time;
+                                behavior.HitCount++;
+                                behavior.TotalExecutionTime += span.TotalMilliseconds;
+                            }
+
+                        });
                     }
-                }));
+
+                    return behavior;
+                });
+
             return averages;
         }
     }
