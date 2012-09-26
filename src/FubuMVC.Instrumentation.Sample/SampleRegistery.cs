@@ -1,7 +1,6 @@
 using FubuMVC.Core;
 using FubuMVC.Instrumentation.Sample.Controllers;
 using FubuMVC.Instrumentation.Sample.Conventions;
-using FubuMVC.Spark;
 
 namespace FubuMVC.Instrumentation.Sample
 {
@@ -12,7 +11,6 @@ namespace FubuMVC.Instrumentation.Sample
             Applies
                 .ToThisAssembly();
 
-            Import<SparkEngine>();
             Actions.IncludeClassesSuffixedWithController();
             Views.TryToAttachWithDefaultConventions();
 
