@@ -13,11 +13,12 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
         {
             get 
             {
-                var value = TotalExecutionTime / HitCount;
+                var value = ActualTotalExecutionTime / HitCount;
                 return Double.IsNaN(value) ? 0 : value; 
             }
         }
 
+        public double ActualTotalExecutionTime { get; set; }
         public double TotalExecutionTime { get; set; }
     }
 }

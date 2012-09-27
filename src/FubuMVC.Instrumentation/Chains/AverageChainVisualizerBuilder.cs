@@ -39,12 +39,14 @@ namespace FubuMVC.Instrumentation.Chains
 
         private IEnumerable<AverageBehaviorModel> BuildBehaviorAverages(BehaviorChain chain)
         {
+            AverageBehaviorModel previousNode = null;
             var report = _cache.GetReport(chain.UniqueId);
             var averages = chain
                 .Where(node =>
                     node.BehaviorType.AssemblyQualifiedName != null
                     && !node.BehaviorType.AssemblyQualifiedName.StartsWith("FubuMVC.Instrumentation")
                     && !node.BehaviorType.AssemblyQualifiedName.StartsWith("FubuMVC.Diagnostics"))
+                .Reverse()
                 .Select(node =>
                 {
                     var behavior = new AverageBehaviorModel
@@ -55,7 +57,8 @@ namespace FubuMVC.Instrumentation.Chains
 
                     if (report != null && report.Reports.Any())
                     {
-                        report.Reports.Each(log =>
+                        report.Reports
+                            .Each(log =>
                         {
                             var startStep = log.FindStep<BehaviorStart>(s => s.Correlation.Node.UniqueId == node.UniqueId);
                             var endStep = log.FindStep<BehaviorFinish>(s => s.Correlation.Node.UniqueId == node.UniqueId);
@@ -67,12 +70,20 @@ namespace FubuMVC.Instrumentation.Chains
                             }
 
                         });
+
+                        behavior.ActualTotalExecutionTime += previousNode != null
+                            ? behavior.TotalExecutionTime - previousNode.TotalExecutionTime
+                            : behavior.TotalExecutionTime;
+
+
+                        previousNode = behavior;
                     }
 
                     return behavior;
                 });
 
-            return averages;
+            return averages.Reverse();
         }
+
     }
 }
