@@ -6,7 +6,6 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
     {
         public Guid Id { get; set; }
         public string BehaviorType { get; set; }
-        public string DisplayType { get; set; }
 
         public int HitCount { get; set; }
 

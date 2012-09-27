@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FubuCore.Descriptions;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuCore;
@@ -49,8 +50,7 @@ namespace FubuMVC.Instrumentation.Chains
                     var behavior = new AverageBehaviorModel
                     {
                         Id = node.UniqueId,
-                        DisplayType = node.GetType().PrettyPrint(),
-                        BehaviorType = node.ToString()
+                        BehaviorType = Description.For(node).Title
                     };
 
                     if (report != null && report.Reports.Any())

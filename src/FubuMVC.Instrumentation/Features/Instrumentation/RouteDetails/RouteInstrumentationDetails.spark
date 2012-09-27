@@ -16,7 +16,7 @@
           <ul class="nav nav-list">
             <li class="nav-header">Behavior Averages</li>
             <li each="var node in Model.AverageChain.BehaviorAverages">
-              ${node.DisplayType}
+              ${node.BehaviorType}
               <span class="node-trace-duration">${node.AverageExecutionTime.ToString("F")} ms (${node.HitCount})</span>
             </li>
           </ul>
