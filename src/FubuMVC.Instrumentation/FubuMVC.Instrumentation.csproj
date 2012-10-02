@@ -75,6 +75,7 @@
     <Compile Include="Runtime\IInstrumentationReportCache.cs" />
     <Compile Include="Runtime\InstrumentationReportCache.cs" />
     <Compile Include="Runtime\InstrumentationRequestNotifier.cs" />
+    <Compile Include="Runtime\InstrumentationSettings.cs" />
     <Compile Include="Runtime\RouteInstrumentationReport.cs" />
     <Compile Include="Features\InstrumentationHandlers.cs" />
     <Compile Include="Features\Instrumentation\GetHandler.cs" />

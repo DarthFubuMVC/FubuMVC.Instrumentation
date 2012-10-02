@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace FubuMVC.Instrumentation.Sample.Controllers
 {
@@ -23,5 +24,17 @@ namespace FubuMVC.Instrumentation.Sample.Controllers
             return new ReallyLongRequestResourceModel();
         }
 
+        public OtherViewModel OccasionalError(OtherInputModel inputModel)
+        {
+            var rand = new Random();
+            if (rand.Next(0, 100) < 10)
+            {
+                throw new Exception("Boom");
+            }
+            return new OtherViewModel
+            {
+                HelloText = inputModel.HelloText
+            };
+        }
     }
 }

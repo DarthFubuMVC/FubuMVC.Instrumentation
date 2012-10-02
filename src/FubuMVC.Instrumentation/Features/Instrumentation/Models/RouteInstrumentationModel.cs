@@ -13,6 +13,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
         public long MinExecution { get; set; }
         public long MaxExecution { get; set; }
         public long ExceptionCount { get; set; }
+        public int MaxStoredRequests { get; set; }
 
         public string ExceptionFrequency
         {
@@ -34,6 +35,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
             MinExecution = report.MinExecution;
             MaxExecution = report.MaxExecution;
             ExceptionCount = report.ExceptionCount;
+            MaxStoredRequests = report.MaxStoredRequests;
         }
     }
 }

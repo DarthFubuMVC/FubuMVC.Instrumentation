@@ -14,7 +14,7 @@ namespace FubuMVC.Instrumentation.Runtime
 {
     public class InstrumentationReportCache : IInstrumentationReportCache
     {
-        private readonly DiagnosticsSettings _settings;
+        private readonly InstrumentationSettings _settings;
         private readonly IUrlRegistry _urls;
         private readonly BehaviorGraph _graph;
 
@@ -23,7 +23,7 @@ namespace FubuMVC.Instrumentation.Runtime
         private readonly IDictionary<Guid, RouteInstrumentationReport> _instrumentationReports =
             new Dictionary<Guid, RouteInstrumentationReport>();
 
-        public InstrumentationReportCache(DiagnosticsSettings settings, IUrlRegistry urls, BehaviorGraph graph)
+        public InstrumentationReportCache(InstrumentationSettings settings, IUrlRegistry urls, BehaviorGraph graph)
         {
             _settings = settings;
             _urls = urls;

@@ -7,6 +7,7 @@
 <Stylesheet href="instrumentationdetails.css" />
 
 <var requestCount="Model.RequestsCount" />
+<var maxRequests="Model.MaxStoredRequests"/>
 
 <div class="container-fluid">
   <div class="row-fluid">
@@ -73,11 +74,14 @@
         <else if="requestCount == 1">
           <h3>Last Request:</h3>
         </else>
-        <else>
+        <else if="maxRequests >= requestCount">
           <h4>Last ${requestCount} Requests:</h4>
         </else>
+        <else if="requestCount >= maxRequests">
+          <h4>Last ${maxRequests} Requests and ${requestCount-maxRequests} Exceptions: </h4>
+        </else>
         <for each="var overview in Model.RequestOverviews">
-          <div class="accordion-group ${overview.HasException ? "error" : overview.IsWarning ? "warning" : "info"}">
+          <div class="accordion-group ${overview.HasException ? 'error' : overview.IsWarning ? 'warning' : 'info'}">
               <input type="hidden" value="${overview.Id}"/>
               <strong>Date Time:</strong>
               <span>${overview.DateTime}</span>
@@ -95,7 +99,7 @@
         </div>
         <div>
           The request instrumentation that you are trying to access does not exist. Return to the 
-          <a href="${this.Urls.UrlFor<FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRequestModel>()}">Instrumentation</a>
+          <a href="${this.Urls.UrlFor[[FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRequestModel]]()}">Instrumentation</a>
           page to see a list of the current list of instrumentation statistics.
         </div>
       </else>

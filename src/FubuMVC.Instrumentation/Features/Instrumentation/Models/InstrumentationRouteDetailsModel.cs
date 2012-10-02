@@ -7,7 +7,6 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
 {
     public class InstrumentationRouteDetailsModel : RouteInstrumentationModel
     {
-
         public InstrumentationRouteDetailsModel()
         {
             RequestOverviews = new List<InstrumentationRequestOverviewModel>();
@@ -30,6 +29,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
         public IEnumerable<InstrumentationRequestOverviewModel> RequestOverviews { get; set; }
         public AverageChainModel AverageChain { get; set; }
         public int RequestsCount { get { return RequestOverviews.Count(); } }
+
 
         private bool IsWarning(RequestLog report)
         {
