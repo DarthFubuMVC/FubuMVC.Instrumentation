@@ -49,3 +49,12 @@ h2 small {
 .chain-visualizer li a {
   cursor: default;
 }
+
+.behaviors-li {
+  word-wrap: break-word;
+}
+
+hr {
+  margin: 5px 0px !important;
+  clear: both;
+}

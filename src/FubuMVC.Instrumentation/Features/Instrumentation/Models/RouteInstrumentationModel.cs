@@ -31,7 +31,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
             Url = report.Url;
             ReportUrl = report.ReportUrl;
             HitCount = report.HitCount;
-            AverageExecution = report.AverageExecution;
+            AverageExecution = Math.Round(report.AverageExecution, 2);
             MinExecution = report.MinExecution;
             MaxExecution = report.MaxExecution;
             ExceptionCount = report.ExceptionCount;

@@ -16,9 +16,10 @@
         <if condition="Model.AverageChain != null">
           <ul class="nav nav-list">
             <li class="nav-header">Behavior Averages</li>
-            <li each="var node in Model.AverageChain.BehaviorAverages">
+            <li each="var node in Model.AverageChain.BehaviorAverages" class="behaviors-li">
               ${node.BehaviorType}
               <span class="node-trace-duration">${node.AverageExecutionTime.ToString("F")} ms (${node.HitCount})</span>
+              <hr/>
             </li>
           </ul>
         </if>

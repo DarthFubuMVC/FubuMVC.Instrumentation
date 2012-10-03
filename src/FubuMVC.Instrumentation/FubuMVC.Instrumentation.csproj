@@ -70,7 +70,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModelExtensions.cs" />
     <Compile Include="Runtime\BehaviorExtensions.cs" />
     <Compile Include="Runtime\IInstrumentationReportCache.cs" />
     <Compile Include="Runtime\InstrumentationReportCache.cs" />
@@ -89,7 +88,6 @@
     <Compile Include="Features\Instrumentation\Models\InstrumentationRequestOverviewModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsInputModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteRequestModel.cs" />
     <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModel.cs" />
     <Compile Include="Features\Instrumentation\RoutesGrid.cs" />
     <Compile Include="Chains\AverageChainVisualizerBuilder.cs" />
