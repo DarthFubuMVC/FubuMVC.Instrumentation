@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E37DC35D-886B-4A9E-A1B2-9AA0A55A6A79}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FubuMVC.Instrumentation.Tests</RootNamespace>
+    <AssemblyName>FubuMVC.Instrumentation.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bottles">
+      <HintPath>..\packages\Bottles.0.9.1.360\lib\Bottles.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuCore">
+      <HintPath>..\packages\FubuCore.0.9.9.180\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuLocalization">
+      <HintPath>..\packages\FubuLocalization.0.9.5.78\lib\FubuLocalization.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core">
+      <HintPath>..\packages\FubuMVC.References.0.9.8.1178\lib\net40\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Diagnostics">
+      <HintPath>..\packages\FubuMVC.Diagnostics.0.1.0.70\lib\net40\FubuMVC.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.JQueryUI">
+      <HintPath>..\packages\FubuMVC.JQueryUI.0.5.0.91\lib\net40\FubuMVC.JQueryUI.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.SlickGrid">
+      <HintPath>..\packages\FubuMVC.SlickGrid.0.0.0.100\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Spark">
+      <HintPath>..\packages\FubuMVC.Spark.0.9.8.1178\lib\net40\FubuMVC.Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap">
+      <HintPath>..\packages\FubuMVC.References.0.9.8.1178\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.TwitterBootstrap">
+      <HintPath>..\packages\FubuMVC.TwitterBootstrap.0.0.0.97\lib\net40\FubuMVC.TwitterBootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuTestingSupport">
+      <HintPath>..\packages\FubuTestingSupport.0.9.9.179\lib\FubuTestingSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlTags">
+      <HintPath>..\packages\HtmlTags.1.1.0.94\lib\4.0\HtmlTags.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark">
+      <HintPath>..\packages\Spark.1.7.0.0\lib\NET40\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.AutoMocking">
+      <HintPath>..\packages\structuremap.automocking.2.6.3\lib\StructureMap.AutoMocking.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\RouteInstrumentationReportTester.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FubuMVC.Instrumentation\FubuMVC.Instrumentation.csproj">
+      <Project>{BB8A4026-60AE-4077-9B6E-F7F08071AE10}</Project>
+      <Name>FubuMVC.Instrumentation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Chains\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuMVC.Instrumentation", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuMVC.Instrumentation.Sample", "FubuMVC.Instrumentation.Sample\FubuMVC.Instrumentation.Sample.csproj", "{9B22A886-1A82-43EF-9628-CBD90B378D9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FubuMVC.Instrumentation.Tests", "FubuMVC.Instrumentation.Tests\FubuMVC.Instrumentation.Tests.csproj", "{E37DC35D-886B-4A9E-A1B2-9AA0A55A6A79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{9B22A886-1A82-43EF-9628-CBD90B378D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B22A886-1A82-43EF-9628-CBD90B378D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B22A886-1A82-43EF-9628-CBD90B378D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E37DC35D-886B-4A9E-A1B2-9AA0A55A6A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E37DC35D-886B-4A9E-A1B2-9AA0A55A6A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E37DC35D-886B-4A9E-A1B2-9AA0A55A6A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E37DC35D-886B-4A9E-A1B2-9AA0A55A6A79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
