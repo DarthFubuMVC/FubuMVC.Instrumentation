@@ -75,17 +75,17 @@ namespace FubuMVC.Instrumentation.Runtime
             }
         }
 
-        public void IncrementHitCount()
+        private void IncrementHitCount()
         {
             Interlocked.Increment(ref _hitCount);
         }
 
-        public void IncrementExceptionCount()
+        private void IncrementExceptionCount()
         {
             Interlocked.Increment(ref _exceptionCount);
         }
 
-        public void AddExecutionTime(long executionTime)
+        private void AddExecutionTime(long executionTime)
         {
             Interlocked.Add(ref _totalExecutionTime, executionTime);
 

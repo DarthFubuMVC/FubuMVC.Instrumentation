@@ -98,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\BehaviorExtensionsTester.cs" />
+    <Compile Include="Runtime\InstrumentationReportCacheTester.cs" />
     <Compile Include="Runtime\RouteInstrumentationReportTester.cs" />
   </ItemGroup>
   <ItemGroup>
