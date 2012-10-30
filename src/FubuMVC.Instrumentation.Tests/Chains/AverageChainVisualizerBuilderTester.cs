@@ -5,9 +5,12 @@ using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Diagnostics.Runtime;
+using FubuMVC.Diagnostics.Runtime.Tracing;
 using FubuMVC.Instrumentation.Chains;
+using FubuMVC.Instrumentation.Runtime;
 using FubuTestingSupport;
 using NUnit.Framework;
+using Rhino.Mocks;
 using SampleNode;
 
 namespace FubuMVC.Instrumentation.Tests.Chains
@@ -20,7 +23,6 @@ namespace FubuMVC.Instrumentation.Tests.Chains
         protected override void  beforeEach()
         {
             _graph = new BehaviorGraph();
-
             Services.Inject(_graph);
         }
 
@@ -42,8 +44,21 @@ namespace FubuMVC.Instrumentation.Tests.Chains
 
             var averageModel = ClassUnderTest.VisualizerFor(chain.UniqueId);
 
-            averageModel.BehaviorAverages.Count().ShouldEqual(0);
+            averageModel.BehaviorAverages.ToList().ShouldBeEmpty();
+        }
 
+        [Test]
+        public void Does_not_vizualize_instrumentation_behaviors()
+        {
+            var chain = new BehaviorChain();
+
+            chain.AddToEnd<InstrumentationNode>();
+
+            _graph.AddChain(chain);
+
+            var averageModel = ClassUnderTest.VisualizerFor(chain.UniqueId);
+
+            averageModel.BehaviorAverages.ToList().ShouldBeEmpty();
         }
 
         [Test]
@@ -51,31 +66,121 @@ namespace FubuMVC.Instrumentation.Tests.Chains
         {
             var chain = new BehaviorChain();
 
-            chain.AddToEnd<SpecialTestNode>();
+            chain.AddToEnd<StubNode>();
             _graph.AddChain(chain);
 
             var averageModel = ClassUnderTest.VisualizerFor(chain.UniqueId);
 
             averageModel.BehaviorAverages.ShouldNotBeEmpty();
+        }
 
+        [Test]
+        public void Visualizes_behaviors_in_correct_order()
+        {
+            var chain = new BehaviorChain();
+
+            chain.AddToEnd<StubNode>();
+            chain.AddToEnd<AnotherStubNode>();
+            _graph.AddChain(chain);
+
+            var averageModel = ClassUnderTest.VisualizerFor(chain.UniqueId);
+
+            var averages = averageModel.BehaviorAverages.ToList();
+
+            averages[0].BehaviorType.ShouldEqual("StubNode");
+            averages[1].BehaviorType.ShouldEqual("AnotherStubNode");
+        }
+
+        [Test]
+        public void Visualizes_behaviors_with_correct_averages()
+        {
+            var chain = new BehaviorChain();
+            var node = new StubNode();
+            int runningTimeSeconds = 10;
+            chain.AddToEnd(node);
+
+            var report = new RouteInstrumentationReport(new InstrumentationSettings(), chain.UniqueId);
+            report.AddReportLog(BuildLog(node, runningTimeSeconds));
+
+            MockFor<IInstrumentationReportCache>()
+                .Stub(x => x.GetReport(chain.UniqueId))
+                .Return(report);
+
+            _graph.AddChain(chain);
+
+            var averageModel = ClassUnderTest.VisualizerFor(chain.UniqueId);
+
+            var averages = averageModel.BehaviorAverages;
+
+            averages.ShouldNotBeEmpty();
+            averages.First().TotalExecutionTime.ShouldEqual(runningTimeSeconds* 1000);
+        }
+
+        private RequestLog BuildLog(BehaviorNode node, int runningTimeSeconds = 10)
+        {
+            var time = LocalSystemTime;
+            var log = new RequestLog
+            {
+                ChainId = node.UniqueId
+            };
+            var correlation = new BehaviorCorrelation(node);
+
+
+            log.AddLog(0, new BehaviorStart(correlation)
+            {
+                Time = time
+            });
+
+            log.AddLog(0, new BehaviorFinish(correlation)
+            {
+                Time = time.AddSeconds(runningTimeSeconds)
+            });
+
+            return log;
+        }
+            
+        private class InstrumentationNode : BehaviorNode
+        {
+            protected override ObjectDef buildObjectDef()
+            {
+              return new ObjectDef(typeof (DiagnosticBehavior), new Type[0]);
+            }
+
+            public override BehaviorCategory Category
+            {
+                get { return BehaviorCategory.Instrumentation; }
+            }
         }
     }
 }
 
 namespace SampleNode
 {
-    public class SpecialTestBehavior : BasicBehavior
+    public class StubBehavior : BasicBehavior
     {
-        public SpecialTestBehavior(PartialBehavior partialBehavior) : base(partialBehavior)
+        public StubBehavior(PartialBehavior partialBehavior) : base(partialBehavior)
         {
         }
     }
 
-    public class SpecialTestNode : BehaviorNode
+    public class StubNode : BehaviorNode
     {
         protected override ObjectDef buildObjectDef()
         {
-          return new ObjectDef(typeof (SpecialTestBehavior), new Type[0]);
+          return new ObjectDef(typeof (StubBehavior), new Type[0]);
+        }
+
+        public override BehaviorCategory Category
+        {
+            get { return BehaviorCategory.Wrapper; }
+        }
+    }
+
+    public class AnotherStubNode : BehaviorNode
+    {
+        protected override ObjectDef buildObjectDef()
+        {
+          return new ObjectDef(typeof (StubBehavior), new Type[0]);
         }
 
         public override BehaviorCategory Category

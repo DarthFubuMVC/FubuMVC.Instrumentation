@@ -4,7 +4,6 @@ using System.Linq;
 using FubuCore.Descriptions;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
-using FubuCore;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 using FubuMVC.Instrumentation.Runtime;
