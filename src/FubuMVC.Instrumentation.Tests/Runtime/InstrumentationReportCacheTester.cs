@@ -19,7 +19,6 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
         {
             _graph = new BehaviorGraph();
             Services.Inject(_graph);
-            _graph = Container.GetInstance<BehaviorGraph>();
         }
 
         [Test]
@@ -65,6 +64,15 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
             var report = ClassUnderTest.GetReport(Guid.NewGuid());
 
             Assert.IsNull(report);
+        }
+
+        [Test, Ignore("Need to finish writing this test.")]
+        public void Should_get_all_reports()
+        {
+            var report = ClassUnderTest.GetReport(Guid.NewGuid());
+
+            ClassUnderTest.Count().ShouldEqual(2);
+
         }
     }
 }

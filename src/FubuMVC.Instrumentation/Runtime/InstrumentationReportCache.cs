@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using FubuCore;
-using FubuMVC.Core;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Urls;
 using FubuMVC.Diagnostics.Runtime;
