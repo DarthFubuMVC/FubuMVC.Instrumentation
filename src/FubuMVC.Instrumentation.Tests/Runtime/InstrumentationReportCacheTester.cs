@@ -43,6 +43,27 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
         }
 
         [Test]
+        public void Should_store_additional_log_for_existing_chain()
+        {
+            var chain = BuildChain();
+
+            var log = new RequestLog
+            {
+                ChainId = chain.UniqueId
+            };
+
+            ClassUnderTest.Store(log);
+            ClassUnderTest.Store(log);
+
+            var report = ClassUnderTest.GetReport(log.ChainId);
+
+            Assert.IsNotNull(report);
+            Assert.IsNotNull(report.Reports);
+
+            report.Reports.Count.ShouldEqual(2);
+        }
+
+        [Test]
         public void Should_not_find_report_for_non_existing_chain()
         {
             var chain = BuildChain();
