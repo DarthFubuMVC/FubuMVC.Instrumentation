@@ -12,7 +12,6 @@ namespace FubuMVC.Instrumentation.Sample
                 .ToThisAssembly();
 
             Actions.IncludeClassesSuffixedWithController();
-            Views.TryToAttachWithDefaultConventions();
 
             Routes
                 .HomeIs<HomeInputModel>()

@@ -3,10 +3,8 @@ using FubuMVC.Core.Registration.Conventions;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Chains;
 using FubuMVC.Instrumentation.Features;
-using FubuMVC.Instrumentation.Features.Instrumentation;
 using FubuMVC.Instrumentation.Navigation;
 using FubuMVC.Instrumentation.Runtime;
-using FubuMVC.Spark;
 
 namespace FubuMVC.Instrumentation
 {
@@ -19,9 +17,6 @@ namespace FubuMVC.Instrumentation
 
             Import<HandlerConvention>(r =>r.MarkerType<InstrumentationHandlers>());
 
-            Views
-                .TryToAttachWithDefaultConventions();
-
             Navigation<InstrumentationMenu>();
 
             Services(x =>
@@ -31,8 +26,6 @@ namespace FubuMVC.Instrumentation
 
                 x.AddService<IRequestTraceObserver, InstrumentationRequestNotifier>();
             });
-
-            Import<SparkEngine>();
         }
     }
 }
