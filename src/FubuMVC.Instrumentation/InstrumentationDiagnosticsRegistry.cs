@@ -1,8 +1,6 @@
 ﻿using FubuMVC.Core;
-using FubuMVC.Core.Registration.Conventions;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Chains;
-using FubuMVC.Instrumentation.Features;
 using FubuMVC.Instrumentation.Navigation;
 using FubuMVC.Instrumentation.Runtime;
 
@@ -12,18 +10,18 @@ namespace FubuMVC.Instrumentation
     {
         public InstrumentationDiagnosticsRegistry()
         {
-            Applies
-                .ToThisAssembly();
+            Actions.FindBy(a =>
+            {
+                a.Applies.ToThisAssembly();
+                a.IncludeClassesSuffixedWithEndpoint();
+            });
 
-            Import<HandlerConvention>(r =>r.MarkerType<InstrumentationHandlers>());
-
-            Navigation<InstrumentationMenu>();
+            Policies.Add<InstrumentationMenu>();
 
             Services(x =>
             {
                 x.SetServiceIfNone<IInstrumentationReportCache,InstrumentationReportCache>();
                 x.SetServiceIfNone<IAverageChainVisualizerBuilder, AverageChainVisualizerBuilder>();
-
                 x.AddService<IRequestTraceObserver, InstrumentationRequestNotifier>();
             });
         }

@@ -14,9 +14,8 @@
 
     else {
       $.ajax({
-        url: '/_fubu/instrumentation/request-details',
+        url: '/_fubu/instrumentation/request/details/' + chainId + '/' + reportId,
         type: 'GET',
-        data: { Id: chainId, ReportId: reportId },
         success: function (data) {
           sibling.slideToggle(250);
           sibling.html(data);

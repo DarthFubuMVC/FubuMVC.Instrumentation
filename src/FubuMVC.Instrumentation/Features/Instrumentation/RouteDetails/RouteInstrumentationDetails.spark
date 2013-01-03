@@ -1,5 +1,8 @@
 ﻿<use master=""/>
 <use namespace="System" />
+<use namespace="HtmlTags" />
+<use namespace="FubuMVC.Core.Assets" />
+<use namespace="FubuMVC.Core.View" />
 <use namespace="FubuMVC.TwitterBootstrap" />
 <viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationRouteDetailsModel"/>
 
