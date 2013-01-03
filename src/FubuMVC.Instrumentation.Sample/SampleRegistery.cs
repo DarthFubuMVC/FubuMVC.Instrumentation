@@ -8,10 +8,13 @@ namespace FubuMVC.Instrumentation.Sample
     {
         public SampleRegistery()
         {
-            Applies
-                .ToThisAssembly();
 
-            Actions.IncludeClassesSuffixedWithController();
+
+            Actions.FindBy(a =>
+            {
+                a.Applies.ToThisAssembly();
+                a.IncludeClassesSuffixedWithController();
+            });
 
             Routes
                 .HomeIs<HomeInputModel>()
@@ -20,7 +23,7 @@ namespace FubuMVC.Instrumentation.Sample
                 .IgnoreNamespaceText("fubumvc")
                 .IgnoreMethodSuffix("Index");
 
-            ApplyConvention<OtherConvention>();
+            Policies.Add<OtherConvention>();
         }
     }
 }

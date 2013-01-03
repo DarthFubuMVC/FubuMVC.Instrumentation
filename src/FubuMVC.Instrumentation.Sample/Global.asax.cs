@@ -1,5 +1,4 @@
-﻿
-using FubuMVC.Core;
+﻿using FubuMVC.Core;
 using FubuMVC.StructureMap;
 
 namespace FubuMVC.Instrumentation.Sample
