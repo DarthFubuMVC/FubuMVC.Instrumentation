@@ -13,7 +13,6 @@ namespace FubuMVC.Instrumentation
             Actions.FindBy(a =>
             {
                 a.Applies.ToThisAssembly();
-                a.IncludeMethods(x => x.Name.Contains("Execute"));
                 a.IncludeClassesSuffixedWithEndpoint();
             });
 
@@ -23,7 +22,6 @@ namespace FubuMVC.Instrumentation
             {
                 x.SetServiceIfNone<IInstrumentationReportCache,InstrumentationReportCache>();
                 x.SetServiceIfNone<IAverageChainVisualizerBuilder, AverageChainVisualizerBuilder>();
-
                 x.AddService<IRequestTraceObserver, InstrumentationRequestNotifier>();
             });
         }
