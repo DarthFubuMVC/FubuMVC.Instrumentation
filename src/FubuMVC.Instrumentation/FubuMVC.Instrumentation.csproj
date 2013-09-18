@@ -64,9 +64,6 @@
     <Reference Include="FubuMVC.Navigation">
       <HintPath>..\packages\FubuMVC.Navigation\lib\net40\FubuMVC.Navigation.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.SlickGrid">
-      <HintPath>..\packages\FubuMVC.SlickGrid\lib\net40\FubuMVC.SlickGrid.dll</HintPath>
-    </Reference>
     <Reference Include="FubuMVC.Spark">
       <HintPath>..\packages\FubuMVC.Spark\lib\net40\FubuMVC.Spark.dll</HintPath>
     </Reference>
@@ -90,10 +87,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Instrumentation\TableRowTagExtensions.cs" />
     <Compile Include="Runtime\BehaviorExtensions.cs" />
     <Compile Include="Runtime\IInstrumentationReportCache.cs" />
     <Compile Include="Runtime\InstrumentationReportCache.cs" />
@@ -102,7 +101,6 @@
     <Compile Include="Runtime\RouteInstrumentationReport.cs" />
     <Compile Include="Features\InstrumentationHandlers.cs" />
     <Compile Include="Features\Instrumentation\InstrumentationEndpoint.cs" />
-    <Compile Include="Features\Instrumentation\RoutesSource.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
@@ -113,7 +111,7 @@
     <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsInputModel.cs" />
     <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModel.cs" />
-    <Compile Include="Features\Instrumentation\RoutesGrid.cs" />
+    <Compile Include="Features\Instrumentation\RouteInstrumentationTableTag.cs" />
     <Compile Include="Chains\AverageChainVisualizerBuilder.cs" />
     <Compile Include="Features\Instrumentation\RequestDetails\InstrumentationRequestDetailsEndpoint.cs" />
     <Compile Include="Features\Instrumentation\RouteDetails\InstrumentationRouteDetailsEndpoint.cs" />
@@ -125,6 +123,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Scripts\instrumentation.js" />
     <Content Include="Content\Scripts\instrumentationdetails.js" />
     <Content Include="Content\Styles\instrumentationdetails.css" />
     <Content Include="Shared\bindings.xml" />
@@ -138,7 +137,9 @@
     <None Include="Features\Instrumentation\RouteDetails\RouteInstrumentationDetails.spark">
       <SubType>Designer</SubType>
     </None>
-    <None Include="instrumentation.asset.config" />
+    <None Include="instrumentation.asset.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="instrumentation.spark.config">
       <SubType>Designer</SubType>
     </None>

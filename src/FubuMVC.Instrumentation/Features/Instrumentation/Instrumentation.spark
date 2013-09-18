@@ -1,29 +1,10 @@
 ﻿<use master="" />
 <use namespace="FubuMVC.Instrumentation.Features.Instrumentation" />
-<use namespace="FubuMVC.SlickGrid" />
 <viewdata model="FubuMVC.Instrumentation.Features.Instrumentation.Models.InstrumentationCacheModel"/>
+
+<Script src="instrumentation.js"/>
 
 <h1>Route Instrumentation Explorer</h1>
 
-!{this.RenderGrid<RoutesGrid>("routesGrid").Attr("style", "width:100%;height:500px;")}
+!{Model.Table}
 
-<script id="routesGrid-custom">
-  {
-    columns: {
-      Url: {width: 300},
-      AverageExecution: {width: 225},
-      HitCount: {width: 100},
-      ExceptionCount: {width: 150},
-      MinExecution: {width: 200},
-      MaxExecution: {width: 200}
-    },
-    modify: function(grid, div){
-      grid.onDblClick.subscribe(function (e) {
-        var cell = grid.getCellFromEvent(e),
-            item = grid.getDataItem(cell.row);
-
-        window.location = item.ReportUrl;
-      });
-    }
-  }
-</script>
