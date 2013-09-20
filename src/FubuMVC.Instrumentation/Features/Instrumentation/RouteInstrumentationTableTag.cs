@@ -12,7 +12,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
             AddClass("table-bordered");
 
             AddHeaderRow(row => {
-                row.Header("Route");
+                row.Header("Endpoint");
                 row.Header("Average Execution Time (ms)");
                 row.Header("Hit Count");
                 row.Header("Exception Count");
@@ -31,7 +31,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation
                 row.Data("id", model.Id);
                 row.Data("url", model.ReportUrl);
 
-                row.Cell(model.Url);
+                row.Cell(model.Endpoint);
                 row.Cell(model.AverageExecution);
                 row.Cell(model.HitCount);
                 row.Cell(model.ExceptionCount);

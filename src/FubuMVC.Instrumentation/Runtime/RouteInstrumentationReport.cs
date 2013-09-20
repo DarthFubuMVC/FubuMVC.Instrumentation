@@ -26,17 +26,17 @@ namespace FubuMVC.Instrumentation.Runtime
         public long MaxExecution { get { return _maxExecution; } }
         public int MaxStoredRequests { get { return _settings.MaxRequestsPerRoute; } }
 
-        public string Url { get; set; }
+        public string Endpoint { get; set; }
         public string ReportUrl { get; set; }
         public Guid Id { get; private set; }
 
-        public RouteInstrumentationReport(InstrumentationSettings settings, Guid behaviorId, string route = null)
+        public RouteInstrumentationReport(InstrumentationSettings settings, Guid behaviorId, string endpoint = null)
         {
             _settings = settings;
             _reportCache = new ConcurrentQueue<RequestLog>();
             _reportErrorCache = new ConcurrentQueue<RequestLog>();
             Id = behaviorId;
-            Url = route;
+            Endpoint = endpoint;
         }
 
         public RouteInstrumentationReport AddReportLog(RequestLog report)

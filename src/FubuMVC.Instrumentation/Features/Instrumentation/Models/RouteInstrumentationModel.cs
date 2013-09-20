@@ -6,7 +6,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
     public class RouteInstrumentationModel
     {
         public Guid Id { get; set; }
-        public string Url { get; set; }
+        public string Endpoint { get; set; }
         public string ReportUrl { get; set; }
         public long HitCount { get; set; }
         public decimal AverageExecution { get; set; }
@@ -28,7 +28,7 @@ namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
         public RouteInstrumentationModel(RouteInstrumentationReport report)
         {
             Id = report.Id;
-            Url = report.Url;
+            Endpoint = report.Endpoint;
             ReportUrl = report.ReportUrl;
             HitCount = report.HitCount;
             AverageExecution = Math.Round(report.AverageExecution, 2);
