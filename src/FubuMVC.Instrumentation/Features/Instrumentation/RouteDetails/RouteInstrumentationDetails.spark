@@ -46,7 +46,7 @@
       <if condition="Model.Id != Guid.Empty">
         <div id="request-header" class="hero-unit">
           <h2 class="route">
-            <span>Route:</span> ${Model.Url}
+            <span>Route:</span> ${Model.Endpoint}
             <small>(Chain ${Model.Id})</small>
           </h2>
           <input id="chainId" type="hidden" value="${Model.Id}"/>
