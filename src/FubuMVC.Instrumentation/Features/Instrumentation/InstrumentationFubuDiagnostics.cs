@@ -6,12 +6,12 @@ using FubuMVC.Instrumentation.Runtime;
 
 namespace FubuMVC.Instrumentation.Features.Instrumentation
 {
-    public class InstrumentationEndpoint
+    public class InstrumentationFubuDiagnostics
     {
         private readonly IInstrumentationReportCache _cache;
         private readonly IUrlRegistry _urls;
 
-        public InstrumentationEndpoint(IInstrumentationReportCache cache, IUrlRegistry urls)
+        public InstrumentationFubuDiagnostics(IInstrumentationReportCache cache, IUrlRegistry urls)
         {
             _cache = cache;
             _urls = urls;

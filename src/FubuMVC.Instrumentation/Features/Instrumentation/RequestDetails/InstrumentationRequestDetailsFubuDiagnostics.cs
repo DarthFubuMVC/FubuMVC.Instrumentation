@@ -4,11 +4,11 @@ using FubuMVC.Instrumentation.Runtime;
 
 namespace FubuMVC.Instrumentation.Features.Instrumentation.RequestDetails
 {
-    public class InstrumentationRequestDetailsEndpoint
+    public class InstrumentationRequestDetailsFubuDiagnostics
     {
         private readonly IInstrumentationReportCache _reportCache;
 
-        public InstrumentationRequestDetailsEndpoint(IInstrumentationReportCache reportCache)
+        public InstrumentationRequestDetailsFubuDiagnostics(IInstrumentationReportCache reportCache)
         {
             _reportCache = reportCache;
         }

@@ -101,7 +101,7 @@
     <Compile Include="Runtime\InstrumentationSettings.cs" />
     <Compile Include="Runtime\RouteInstrumentationReport.cs" />
     <Compile Include="Features\InstrumentationHandlers.cs" />
-    <Compile Include="Features\Instrumentation\InstrumentationEndpoint.cs" />
+    <Compile Include="Features\Instrumentation\InstrumentationFubuDiagnostics.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
     <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
     <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
@@ -114,8 +114,8 @@
     <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModel.cs" />
     <Compile Include="Features\Instrumentation\RouteInstrumentationTableTag.cs" />
     <Compile Include="Chains\AverageChainVisualizerBuilder.cs" />
-    <Compile Include="Features\Instrumentation\RequestDetails\InstrumentationRequestDetailsEndpoint.cs" />
-    <Compile Include="Features\Instrumentation\RouteDetails\InstrumentationRouteDetailsEndpoint.cs" />
+    <Compile Include="Features\Instrumentation\RequestDetails\InstrumentationRequestDetailsFubuDiagnostics.cs" />
+    <Compile Include="Features\Instrumentation\RouteDetails\InstrumentationRouteDetailsFubuDiagnostics.cs" />
     <Compile Include="Chains\IAverageChainVisualizerBuilder.cs" />
     <Compile Include="InstrumentationDiagnosticsRegistry.cs" />
     <Compile Include="InstrumentationRegistration.cs" />

@@ -8,12 +8,12 @@ using FubuMVC.Instrumentation.Runtime;
 
 namespace FubuMVC.Instrumentation.Features.Instrumentation.RouteDetails
 {
-    public class InstrumentationRouteDetailsEndpoint
+    public class InstrumentationRouteDetailsFubuDiagnostics
     {
         private readonly IInstrumentationReportCache _reportCache;
         private readonly IAverageChainVisualizerBuilder _averagesBuilder;
 
-        public InstrumentationRouteDetailsEndpoint(IInstrumentationReportCache reportCache, IAverageChainVisualizerBuilder averagesBuilder)
+        public InstrumentationRouteDetailsFubuDiagnostics(IInstrumentationReportCache reportCache, IAverageChainVisualizerBuilder averagesBuilder)
         {
             _reportCache = reportCache;
             _averagesBuilder = averagesBuilder;
