@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\Instrumentation\TableRowTagExtensions.cs" />
+    <Compile Include="FubuDiagnosticsConfiguration.cs" />
     <Compile Include="Runtime\BehaviorExtensions.cs" />
     <Compile Include="Runtime\IInstrumentationReportCache.cs" />
     <Compile Include="Runtime\InstrumentationReportCache.cs" />
@@ -117,9 +118,7 @@
     <Compile Include="Features\Instrumentation\RouteDetails\InstrumentationRouteDetailsEndpoint.cs" />
     <Compile Include="Chains\IAverageChainVisualizerBuilder.cs" />
     <Compile Include="InstrumentationDiagnosticsRegistry.cs" />
-    <Compile Include="Navigation\InstrumentationMenu.cs" />
     <Compile Include="InstrumentationRegistration.cs" />
-    <Compile Include="Navigation\InstrumentationKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using FubuMVC.Core;
 using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Chains;
-using FubuMVC.Instrumentation.Navigation;
 using FubuMVC.Instrumentation.Runtime;
 
 namespace FubuMVC.Instrumentation
@@ -15,8 +14,6 @@ namespace FubuMVC.Instrumentation
                 a.Applies.ToThisAssembly();
                 a.IncludeClassesSuffixedWithEndpoint();
             });
-
-            Policies.Add<InstrumentationMenu>();
 
             Services(x =>
             {
