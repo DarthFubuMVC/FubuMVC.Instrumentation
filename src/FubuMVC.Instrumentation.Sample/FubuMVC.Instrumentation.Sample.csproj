@@ -153,7 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controllers\Home\Home.spark" />
-    <Content Include="Controllers\Home\Other.spark" />
     <Content Include="Shared\Application.spark" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

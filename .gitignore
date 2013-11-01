@@ -39,7 +39,6 @@ src/Spark.Web.FubuMVC
 FubuTestAppRoot
 lib/bottles/FubuMVC*.*
 lib/**/*.nupkg
-.links
 packaging/release
 *.swp
 output

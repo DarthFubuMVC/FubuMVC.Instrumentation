@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using FubuMVC.Core.Continuations;
 
 namespace FubuMVC.Instrumentation.Sample.Controllers
 {
@@ -10,18 +11,15 @@ namespace FubuMVC.Instrumentation.Sample.Controllers
             return new HomeViewModel();
         }
 
-        public OtherViewModel OtherView(OtherInputModel inputModel)
+        public string OtherView(OtherInputModel inputModel)
         {
-            return new OtherViewModel
-            {
-                HelloText = inputModel.HelloText
-            };
+            return inputModel.HelloText;
         }
 
-        public ReallyLongRequestResourceModel ReallyLongRequest()
+        public FubuContinuation ReallyLongRequest()
         {
             Thread.Sleep(10000);
-            return new ReallyLongRequestResourceModel();
+            return FubuContinuation.RedirectTo("/_fubu/instrumentation");
         }
 
         public OtherViewModel OccasionalError(OtherInputModel inputModel)

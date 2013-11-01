@@ -1,3 +1,0 @@
-﻿<viewdata model="FubuMVC.Instrumentation.Sample.Controllers.OtherViewModel"/>
-
-${Model.HelloText}
