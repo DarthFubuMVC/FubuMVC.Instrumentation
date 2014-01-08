@@ -92,34 +92,34 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chains\AverageChainVisualizerBuilder.cs" />
+    <Compile Include="Chains\IAverageChainVisualizerBuilder.cs" />
+    <Compile Include="Features\Instrumentation\InstrumentationFubuDiagnostics.cs" />
+    <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsInputModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestOverviewModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsInputModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsModel.cs" />
+    <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModel.cs" />
+    <Compile Include="Features\Instrumentation\RequestDetails\InstrumentationRequestDetailsFubuDiagnostics.cs" />
+    <Compile Include="Features\Instrumentation\RouteDetails\InstrumentationRouteDetailsFubuDiagnostics.cs" />
+    <Compile Include="Features\Instrumentation\RouteInstrumentationTableTag.cs" />
     <Compile Include="Features\Instrumentation\TableRowTagExtensions.cs" />
+    <Compile Include="Features\InstrumentationHandlers.cs" />
     <Compile Include="FubuDiagnosticsConfiguration.cs" />
+    <Compile Include="InstrumentationDiagnosticsRegistry.cs" />
+    <Compile Include="InstrumentationRegistration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\BehaviorExtensions.cs" />
     <Compile Include="Runtime\IInstrumentationReportCache.cs" />
     <Compile Include="Runtime\InstrumentationReportCache.cs" />
     <Compile Include="Runtime\InstrumentationRequestNotifier.cs" />
     <Compile Include="Runtime\InstrumentationSettings.cs" />
     <Compile Include="Runtime\RouteInstrumentationReport.cs" />
-    <Compile Include="Features\InstrumentationHandlers.cs" />
-    <Compile Include="Features\Instrumentation\InstrumentationFubuDiagnostics.cs" />
-    <Compile Include="Features\Instrumentation\Models\AverageBehaviorModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\AverageChainModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationCacheModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRouteDetailsInputModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestOverviewModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\InstrumentationRequestDetailsInputModel.cs" />
-    <Compile Include="Features\Instrumentation\Models\RouteInstrumentationModel.cs" />
-    <Compile Include="Features\Instrumentation\RouteInstrumentationTableTag.cs" />
-    <Compile Include="Chains\AverageChainVisualizerBuilder.cs" />
-    <Compile Include="Features\Instrumentation\RequestDetails\InstrumentationRequestDetailsFubuDiagnostics.cs" />
-    <Compile Include="Features\Instrumentation\RouteDetails\InstrumentationRouteDetailsFubuDiagnostics.cs" />
-    <Compile Include="Chains\IAverageChainVisualizerBuilder.cs" />
-    <Compile Include="InstrumentationDiagnosticsRegistry.cs" />
-    <Compile Include="InstrumentationRegistration.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Scripts\instrumentation.js" />
@@ -129,10 +129,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".package-manifest" />
-    <None Include="Features\Instrumentation\RequestDetails\InstrumentationRequestDetails.spark" />
     <None Include="Features\Instrumentation\Instrumentation.spark">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Features\Instrumentation\RequestDetails\InstrumentationRequestDetails.spark" />
     <None Include="Features\Instrumentation\RouteDetails\RouteInstrumentationDetails.spark">
       <SubType>Designer</SubType>
     </None>
@@ -159,9 +159,5 @@
     <EmbeddedResource Include="pak-WebContent.zip" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="pak-Data.zip" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="pak-Config.zip" />
   </ItemGroup>
 </Project>
