@@ -16,14 +16,8 @@ namespace FubuMVC.Instrumentation.Sample
                 a.IncludeClassesSuffixedWithController();
             });
 
-            Routes
-                .HomeIs<HomeInputModel>()
-                .IgnoreNamespaceText("Controllers")
-                .IgnoreNamespaceText("instrumentation")
-                .IgnoreNamespaceText("fubumvc")
-                .IgnoreMethodSuffix("Index");
 
-            Policies.Add<OtherConvention>();
+            Policies.Global.Add<OtherConvention>();
         }
     }
 }

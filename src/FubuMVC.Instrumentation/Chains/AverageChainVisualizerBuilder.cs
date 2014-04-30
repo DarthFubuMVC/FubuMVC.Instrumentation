@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using FubuCore.Descriptions;
+using FubuMVC.Core.Diagnostics.Runtime;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
-using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 using FubuMVC.Instrumentation.Runtime;
 
@@ -44,7 +44,8 @@ namespace FubuMVC.Instrumentation.Chains
                 .Where(node =>
                     node.BehaviorType.AssemblyQualifiedName != null
                     && !node.BehaviorType.AssemblyQualifiedName.StartsWith("FubuMVC.Instrumentation")
-                    && !node.BehaviorType.AssemblyQualifiedName.StartsWith("FubuMVC.Diagnostics"))
+                    && !node.BehaviorType.AssemblyQualifiedName.StartsWith("FubuMVC.Diagnostics")
+                    && !node.BehaviorType.AssemblyQualifiedName.StartsWith("FubuMVC.Core.Diagnostics"))
                 .Reverse()
                 .Select(node =>
                 {

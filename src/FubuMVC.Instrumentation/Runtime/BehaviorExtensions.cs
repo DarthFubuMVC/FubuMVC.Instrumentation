@@ -6,23 +6,30 @@ namespace FubuMVC.Instrumentation.Runtime
     {
         public static string GetRoute(this BehaviorChain chain)
         {
-                if (chain == null || chain.Route == null || chain.Route.Pattern == null)
-                {
-                    return "N/A";
-                }
+            if (chain == null)
+            {
+                return "N/A";
+            }
 
-                if (chain.IsPartialOnly)
-                {
-                    return "(partial)";
-                }
+            if (chain.IsPartialOnly)
+            {
+                return "(partial)";
+            }
 
-                var pattern = chain.Route.Pattern;
-                if (pattern == string.Empty)
-                {
-                    pattern = "(default)";
-                }
+            var routed = chain as RoutedChain;
 
-                return pattern;
+            if (routed == null)
+            {
+                return "N/A";
+            }
+
+            var pattern = routed.GetRoutePattern();
+            if (pattern == string.Empty)
+            {
+                pattern = "(default)";
+            }
+
+            return pattern;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using FubuMVC.Diagnostics.Runtime;
+﻿using FubuMVC.Core.Diagnostics.Runtime;
 
 namespace FubuMVC.Instrumentation.Features.Instrumentation.Models
 {

@@ -1,5 +1,5 @@
 ﻿using FubuMVC.Core;
-using FubuMVC.Diagnostics.Runtime;
+using FubuMVC.Core.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Chains;
 using FubuMVC.Instrumentation.Runtime;
 

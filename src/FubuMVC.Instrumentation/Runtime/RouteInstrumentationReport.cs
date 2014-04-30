@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using FubuMVC.Diagnostics.Runtime;
+using FubuMVC.Core.Diagnostics.Runtime;
 
 namespace FubuMVC.Instrumentation.Runtime
 {

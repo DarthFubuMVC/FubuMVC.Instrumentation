@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using FubuMVC.Core.Behaviors;
+using FubuMVC.Core.Diagnostics.Runtime;
+using FubuMVC.Core.Diagnostics.Runtime.Tracing;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.ObjectGraph;
-using FubuMVC.Diagnostics.Runtime;
-using FubuMVC.Diagnostics.Runtime.Tracing;
 using FubuMVC.Instrumentation.Chains;
 using FubuMVC.Instrumentation.Runtime;
 using FubuTestingSupport;
@@ -20,7 +20,7 @@ namespace FubuMVC.Instrumentation.Tests.Chains
     {
         private BehaviorGraph _graph;
 
-        protected override void  beforeEach()
+        protected override void beforeEach()
         {
             _graph = new BehaviorGraph();
             Services.Inject(_graph);
@@ -96,7 +96,7 @@ namespace FubuMVC.Instrumentation.Tests.Chains
         {
             var chain = new BehaviorChain();
             var node = new StubNode();
-            int runningTimeSeconds = 10;
+            var runningTimeSeconds = 10;
             chain.AddToEnd(node);
 
             var report = new RouteInstrumentationReport(new InstrumentationSettings(), chain.UniqueId);
@@ -113,7 +113,7 @@ namespace FubuMVC.Instrumentation.Tests.Chains
             var averages = averageModel.BehaviorAverages;
 
             averages.ShouldNotBeEmpty();
-            averages.First().TotalExecutionTime.ShouldEqual(runningTimeSeconds* 1000);
+            averages.First().TotalExecutionTime.ShouldEqual(runningTimeSeconds*1000);
         }
 
         private RequestLog BuildLog(BehaviorNode node, int runningTimeSeconds = 10)
@@ -138,12 +138,12 @@ namespace FubuMVC.Instrumentation.Tests.Chains
 
             return log;
         }
-            
+
         private class InstrumentationNode : BehaviorNode
         {
             protected override ObjectDef buildObjectDef()
             {
-              return new ObjectDef(typeof (DiagnosticBehavior), new Type[0]);
+                return new ObjectDef(typeof (DiagnosticBehavior), new Type[0]);
             }
 
             public override BehaviorCategory Category
@@ -167,7 +167,7 @@ namespace SampleNode
     {
         protected override ObjectDef buildObjectDef()
         {
-          return new ObjectDef(typeof (StubBehavior), new Type[0]);
+            return new ObjectDef(typeof (StubBehavior), new Type[0]);
         }
 
         public override BehaviorCategory Category
@@ -180,7 +180,7 @@ namespace SampleNode
     {
         protected override ObjectDef buildObjectDef()
         {
-          return new ObjectDef(typeof (StubBehavior), new Type[0]);
+            return new ObjectDef(typeof (StubBehavior), new Type[0]);
         }
 
         public override BehaviorCategory Category

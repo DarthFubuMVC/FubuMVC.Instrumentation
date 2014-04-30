@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FubuMVC.Diagnostics.Runtime;
+using FubuMVC.Core.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Runtime;
 
 namespace FubuMVC.Instrumentation.Features.Instrumentation.Models

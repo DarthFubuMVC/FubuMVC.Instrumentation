@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
+using FubuMVC.Core.Diagnostics.Runtime;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Routes;
-using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Runtime;
 using FubuTestingSupport;
 using NUnit.Framework;
@@ -92,10 +92,7 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
 
         private BehaviorChain BuildChain(string pattern = "some/pattern")
         {
-           var chain = new BehaviorChain
-           {
-               Route = new RouteDefinition(pattern)
-           };
+           var chain = new RoutedChain(pattern);
             chain.AddToEnd(new StubNode());
 
             _graph.AddChain(chain);

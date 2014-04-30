@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using FubuCore;
+using FubuMVC.Core.Diagnostics.Runtime;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Urls;
 using FubuMVC.Diagnostics.Chains;
-using FubuMVC.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Features.Instrumentation.Models;
 
 namespace FubuMVC.Instrumentation.Runtime
@@ -57,7 +57,7 @@ namespace FubuMVC.Instrumentation.Runtime
                 {
                     var chain = _graph.Behaviors.FirstOrDefault(x => x.UniqueId == log.ChainId);
 
-                    var title = ChainVisualization.TitleForChain(chain);
+                    var title = chain.Title();
                     var report = new RouteInstrumentationReport(_settings, id, title)
                     {
                         ReportUrl = _urls.UrlFor(new InstrumentationRouteDetailsInputModel { Id = id })

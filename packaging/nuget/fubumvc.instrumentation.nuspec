@@ -14,7 +14,7 @@
     <dependencies>
       <dependency id="FubuMVC.SlickGrid" />
       <dependency id="FubuMVC.Spark" />
-      <dependency id="FubuMVC.Diagnostics" version="0.9.6.335" />
+      <dependency id="FubuMVC.Diagnostics" version="2.0.0.1776" />
     </dependencies>
   </metadata>
   <files xmlns="">

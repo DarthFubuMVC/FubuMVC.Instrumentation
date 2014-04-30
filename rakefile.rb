@@ -1,13 +1,4 @@
-begin
-  require 'bundler/setup'
-  require 'fuburake'
-rescue LoadError
-  puts 'Bundler and all the gems need to be installed prior to running this rake script. Installing...'
-  system("gem install bundler --source http://rubygems.org")
-  sh 'bundle install'
-  system("bundle exec rake", *ARGV)
-  exit 0
-end
+require 'fuburake'
 
 
 FubuRake::Solution.new do |sln|
@@ -24,4 +15,8 @@ FubuRake::Solution.new do |sln|
 	sln.fubudocs_enabled = true
 	
 	sln.assembly_bottle 'FubuMVC.Instrumentation'
+	
+	sln.options[:nuget_publish_folder] = 'nupkgs'
+	sln.options[:nuget_publish_url] = 'https://www.myget.org/F/fubumvc-edge/'
+
 end

@@ -20,25 +20,12 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
         [Test]
         public void Should_get_na_for_route_when_chain_route_is_null()
         {
-            var chainWithoutRoute = new BehaviorChain
-            {
-                Route = null
-            };
+            var chainWithoutRoute = new BehaviorChain();
 
             Assert.AreEqual(Na, chainWithoutRoute.GetRoute());
         }
 
 
-        [Test]
-        public void Should_get_na_for_route_when_chain_route_pattern_is_null()
-        {
-            var chainWithoutRoute = new BehaviorChain
-            {
-                Route = new RouteDefinition(null)
-            };
-
-            Assert.AreEqual(Na, chainWithoutRoute.GetRoute());
-        }
 
 
         [Test]
@@ -46,7 +33,6 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
         {
             var chainWithoutRoute = new BehaviorChain
             {
-                Route = new RouteDefinition("~/"),
                 IsPartialOnly = true
             };
 
@@ -56,10 +42,7 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
         [Test]
         public void Should_get_default_for_route_when_chain_route_pattern_is_empty()
         {
-            var chainWithoutRoute = new BehaviorChain
-            {
-                Route = new RouteDefinition(string.Empty),
-            };
+            var chainWithoutRoute = new RoutedChain(string.Empty);
 
             Assert.AreEqual("(default)", chainWithoutRoute.GetRoute());
         }
@@ -69,10 +52,7 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
         {
             const string pattern = "hello/world";
 
-            var chainWithoutRoute = new BehaviorChain
-            {
-                Route = new RouteDefinition(pattern),
-            };
+            var chainWithoutRoute = new RoutedChain(pattern);
 
             Assert.AreEqual(pattern, chainWithoutRoute.GetRoute());
         }

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using FubuMVC.Diagnostics.Runtime;
+using FubuMVC.Core.Diagnostics.Runtime;
 
 namespace FubuMVC.Instrumentation.Runtime
 {

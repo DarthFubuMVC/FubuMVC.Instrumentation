@@ -1,4 +1,4 @@
-﻿using FubuMVC.Diagnostics.Runtime;
+﻿using FubuMVC.Core.Diagnostics.Runtime;
 using FubuMVC.Instrumentation.Runtime;
 using FubuTestingSupport;
 using NUnit.Framework;
