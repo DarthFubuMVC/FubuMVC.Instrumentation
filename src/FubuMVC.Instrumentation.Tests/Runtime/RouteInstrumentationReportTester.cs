@@ -20,7 +20,7 @@ namespace FubuMVC.Instrumentation.Tests.Runtime
                 MaxErrorsPerRoute = 5
             };
 
-            Services.Inject(new RouteInstrumentationReport(_settings, Guid.Empty, string.Empty ));
+            Container.Inject(new RouteInstrumentationReport(_settings, Guid.Empty, string.Empty ));
         }
 
         [Test]
